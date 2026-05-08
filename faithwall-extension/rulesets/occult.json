@@ -1,0 +1,22 @@
+[
+  { "id": 401, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||astrology.com^",       "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 402, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||horoscope.com^",       "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 403, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||cafe-astrology.com^",  "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 404, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||ganeshaspeaks.com^",   "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 405, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||astrologyzone.com^",   "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 406, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||tarot.com^",           "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 407, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||biddytarot.com^",      "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 408, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||labyrinthos.co^",      "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 409, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||thewitchofwanderlust.com^", "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 410, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||spells8.com^",         "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 411, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||witchology.com^",      "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 412, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||moonwater.org^",       "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 413, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||psychic.com^",         "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 414, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||kasamba.com^",         "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 415, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||keen.com^",            "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 416, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||7witches.com^",        "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 417, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||universalpsychic.com^", "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 418, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||ouija.net^",           "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 419, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||satanic.wiki^",        "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 420, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||churchofsatan.com^",   "resourceTypes": ["main_frame","sub_frame"] } }
+]

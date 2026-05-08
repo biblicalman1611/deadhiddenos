@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biblical Womanhood Without Apology — Dead Hidden Ministries</title>
+  <meta name="description" content="Who can find a virtuous woman? for her price is far above rubies. — Prov 31:10 KJV. Biblical womanhood without the apology, the apology-tour, or the cultural edits.">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:           #111;
+      --bg2:          #1a1a1a;
+      --bg3:          #222;
+      --border:       rgba(139,37,0,0.2);
+      --border-focus: #8b2500;
+      --text:         #f5f0e8;
+      --text-dim:     rgba(245,240,232,0.55);
+      --text-faint:   rgba(245,240,232,0.25);
+      --accent:       #8b2500;
+      --accent-hover: #a02c00;
+      --label:        #a0522d;
+    }
+
+    html { background: var(--bg); }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Georgia', serif;
+      min-height: 100vh;
+    }
+
+    /* ---- Header ---- */
+    .site-header {
+      border-bottom: 1px solid var(--border);
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+    }
+    .brand {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    /* ---- Layout ---- */
+    .container {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 64px 24px 96px;
+    }
+
+    /* ---- Eyebrow ---- */
+    .eyebrow {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--label);
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    /* ---- Headline ---- */
+    h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      margin-bottom: 28px;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--text-dim);
+    }
+
+    /* ---- Hero verse block ---- */
+    .hero-verse {
+      background: var(--bg2);
+      border-left: 3px solid var(--accent);
+      padding: 24px 28px;
+      margin-bottom: 28px;
+    }
+
+    .hero-verse .verse-text {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: var(--text);
+      font-style: italic;
+      margin-bottom: 10px;
+    }
+
+    .hero-verse .verse-ref {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--label);
+      font-weight: 700;
+    }
+
+    /* ---- Body prose ---- */
+    .lead {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--text-dim);
+      margin-bottom: 40px;
+      max-width: 560px;
+    }
+
+    .lead strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* ---- Divider ---- */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 48px 0;
+    }
+
+    /* ---- Section label ---- */
+    .section-label {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--label);
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    /* ---- Scripture grid ---- */
+    .scripture-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-bottom: 48px;
+    }
+
+    .scripture-item {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      padding: 22px 24px;
+    }
+
+    .scripture-ref {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--label);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .scripture-text {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: var(--text);
+      font-style: italic;
+    }
+
+    .scripture-note {
+      margin-top: 10px;
+      font-family: 'Arial', sans-serif;
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      font-style: normal;
+      line-height: 1.55;
+    }
+
+    /* ---- Email capture ---- */
+    .email-section {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      padding: 32px 28px;
+      margin-bottom: 48px;
+    }
+
+    .email-section h2 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+    }
+
+    .email-section p {
+      font-size: 0.93rem;
+      color: var(--text-dim);
+      line-height: 1.65;
+      margin-bottom: 20px;
+    }
+
+    .email-row {
+      display: flex;
+      gap: 0;
+      flex-wrap: wrap;
+    }
+
+    .email-row input[type="email"] {
+      flex: 1 1 220px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-right: none;
+      color: var(--text);
+      font-family: 'Georgia', serif;
+      font-size: 1rem;
+      padding: 14px 18px;
+      outline: none;
+      transition: border-color 0.15s;
+      -webkit-appearance: none;
+      min-width: 0;
+    }
+
+    .email-row input[type="email"]::placeholder {
+      color: var(--text-faint);
+    }
+
+    .email-row input[type="email"]:focus {
+      border-color: var(--border-focus);
+    }
+
+    .email-row button {
+      background: var(--accent);
+      color: var(--text);
+      border: none;
+      padding: 14px 28px;
+      font-family: 'Arial', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.2s;
+      flex-shrink: 0;
+    }
+
+    .email-row button:hover:not(:disabled) {
+      background: var(--accent-hover);
+    }
+
+    .email-row button:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+
+    .email-success {
+      display: none;
+      font-family: 'Arial', sans-serif;
+      font-size: 0.85rem;
+      color: #a3e4a3;
+      letter-spacing: 1px;
+      margin-top: 12px;
+    }
+
+    .email-error {
+      display: none;
+      font-size: 0.88rem;
+      color: #fca5a5;
+      margin-top: 10px;
+      line-height: 1.5;
+    }
+
+    /* ---- Field Manual CTA ---- */
+    .manual-cta {
+      background: var(--bg2);
+      border: 1px solid rgba(139,37,0,0.45);
+      padding: 32px 28px;
+      margin-bottom: 24px;
+    }
+
+    .manual-cta .eyebrow {
+      margin-bottom: 14px;
+    }
+
+    .manual-cta h2 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+
+    .manual-cta p {
+      font-size: 0.93rem;
+      color: var(--text-dim);
+      line-height: 1.65;
+      margin-bottom: 24px;
+    }
+
+    .manual-btn {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--text);
+      text-decoration: none;
+      padding: 16px 36px;
+      font-family: 'Arial', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      transition: background 0.2s;
+    }
+
+    .manual-btn:hover {
+      background: var(--accent-hover);
+    }
+
+    .manual-price-note {
+      display: block;
+      margin-top: 12px;
+      font-family: 'Arial', sans-serif;
+      font-size: 0.75rem;
+      color: var(--text-faint);
+      letter-spacing: 1px;
+    }
+
+    /* ---- Secondary CTA ---- */
+    .secondary-cta {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      padding: 24px 28px;
+      margin-bottom: 48px;
+    }
+
+    .secondary-cta p {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.88rem;
+      color: var(--text-dim);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .secondary-btn {
+      display: inline-block;
+      background: transparent;
+      color: var(--text);
+      text-decoration: none;
+      padding: 13px 28px;
+      border: 1px solid rgba(139,37,0,0.5);
+      font-family: 'Arial', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .secondary-btn:hover {
+      border-color: var(--accent);
+      color: var(--text);
+    }
+
+    /* ---- Footer ---- */
+    .site-footer {
+      margin-top: 80px;
+      padding: 32px 24px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+    .site-footer p {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.75rem;
+      color: var(--text-faint);
+      letter-spacing: 1px;
+    }
+    .site-footer a {
+      color: rgba(245,240,232,0.35);
+      text-decoration: none;
+    }
+    .site-footer a:hover { color: var(--text-dim); }
+
+    /* ---- Mobile ---- */
+    @media (max-width: 480px) {
+      .email-row { flex-direction: column; }
+      .email-row input[type="email"] { border-right: 1px solid var(--border); border-bottom: none; }
+      .email-row button { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="https://deadhidden.org" class="brand">Dead Hidden</a>
+</header>
+
+<main class="container">
+
+  <!-- Hero -->
+  <div class="eyebrow">Dead Hidden OS</div>
+  <h1>She is not a project.<br><em>She is a calling.</em></h1>
+
+  <!-- Prov 31:10–12 KJV hero verse -->
+  <div class="hero-verse">
+    <div class="verse-text">
+      "Who can find a virtuous woman? for her price is far above rubies. The heart of her husband doth safely trust in her, so that he shall have no need of spoil. She will do him good and not evil all the days of her life."
+    </div>
+    <div class="verse-ref">Proverbs 31:10–12 — KJV</div>
+  </div>
+
+  <p class="lead">
+    Biblical womanhood without the apology, the apology-tour, or the cultural edits.<br>
+    <strong>Scripture does not soften this calling. Neither should we.</strong><br>
+    The world has rewritten what a woman is for. What you find below is what it actually says.
+  </p>
+
+  <hr class="divider">
+
+  <!-- Scripture Grid -->
+  <div class="section-label">What Scripture Says</div>
+  <div class="scripture-grid">
+
+    <div class="scripture-item">
+      <div class="scripture-ref">Proverbs 31:10–12 — KJV</div>
+      <div class="scripture-text">
+        "Who can find a virtuous woman? for her price is far above rubies. The heart of her husband doth safely trust in her, so that he shall have no need of spoil. She will do him good and not evil all the days of her life."
+      </div>
+      <div class="scripture-note">
+        The question is rhetorical — she is rare, not impossible. Her value is not derived from the market or the culture; it is declared by God. The husband's trust is the measure: not affection as performance, but a life that makes him safe.
+      </div>
+    </div>
+
+    <div class="scripture-item">
+      <div class="scripture-ref">Titus 2:3–5 — KJV</div>
+      <div class="scripture-text">
+        "The aged women likewise, that they be in behaviour as becometh holiness, not false accusers, not given to much wine, teachers of good things; That they may teach the young women to be sober, to love their husbands, to love their children, to be discreet, chaste, keepers at home, good, obedient to their own husbands, that the word of God be not blasphemed."
+      </div>
+      <div class="scripture-note">
+        This is not a suggestion for a different era. The stakes are stated plainly: when women abandon this calling, the word of God is blasphemed. The cultural edit that says "this was only for then" is the blasphemy the text is warning against.
+      </div>
+    </div>
+
+    <div class="scripture-item">
+      <div class="scripture-ref">1 Peter 3:1–4 — KJV</div>
+      <div class="scripture-text">
+        "Likewise, ye wives, be in subjection to your own husbands; that, if any obey not the word, they also may without the word be won by the conversation of the wives; While they behold your chaste conversation coupled with fear. Whose adorning let it not be that outward adorning of plaiting the hair, and of wearing of gold, or of putting on of apparel; But let it be the hidden man of the heart, in that which is not corruptible, even the ornament of a meek and quiet spirit, which is in the sight of God of great price."
+      </div>
+      <div class="scripture-note">
+        Meek and quiet are not personality descriptors — they are a posture before God. The woman who cultivates this is not diminished; she carries what God calls great price. The outward performance culture demands cannot purchase what the hidden man of the heart holds.
+      </div>
+    </div>
+
+    <div class="scripture-item">
+      <div class="scripture-ref">Ephesians 5:22–24 — KJV</div>
+      <div class="scripture-text">
+        "Wives, submit yourselves unto your own husbands, as unto the Lord. For the husband is the head of the wife, even as Christ is the head of the church: and he is the saviour of the body. Therefore as the church is subject unto Christ, so let the wives be to their own husbands in every thing."
+      </div>
+      <div class="scripture-note">
+        The "as unto the Lord" is the part the modern revision cannot survive. This is not mutual negotiation dressed in biblical language — it is an ordered relationship with a theological rationale. The church's submission to Christ is not conditional or situational. Neither is this.
+      </div>
+    </div>
+
+    <div class="scripture-item">
+      <div class="scripture-ref">1 Timothy 2:9–10 — KJV</div>
+      <div class="scripture-text">
+        "In like manner also, that women adorn themselves in modest apparel, with shamefacedness and sobriety; not with broided hair, or gold, or pearls, or costly array; But (which becometh women professing godliness) with good works."
+      </div>
+      <div class="scripture-note">
+        Shamefacedness is not shame — it is a self-awareness that refuses to demand attention. The woman who professes godliness is known by works, not by the surface. The culture sells the inverse: surface first, works optional.
+      </div>
+    </div>
+
+    <div class="scripture-item">
+      <div class="scripture-ref">Proverbs 14:1 — KJV</div>
+      <div class="scripture-text">
+        "Every wise woman buildeth her house: but the foolish plucketh it down with her hands."
+      </div>
+      <div class="scripture-note">
+        There is no neutral. Every woman is building or tearing down — and the tearing down can happen with the same hands that are supposed to build. The wise woman is defined by what she constructs. The foolish woman does not need an enemy; she is her own.
+      </div>
+    </div>
+
+    <div class="scripture-item">
+      <div class="scripture-ref">Ruth 3:11 — KJV</div>
+      <div class="scripture-text">
+        "And now, my daughter, fear not; I will do to thee all that thou requirest: for all the city of my people doth know that thou art a virtuous woman."
+      </div>
+      <div class="scripture-note">
+        Virtue is observable. The whole city knows. It is not a private spiritual condition — it is a lived reputation built over time through faithful, visible action. This is what the Proverbs 31 woman produces: a name that precedes her.
+      </div>
+    </div>
+
+  </div>
+
+  <hr class="divider">
+
+  <!-- Email Capture -->
+  <div class="email-section" id="email-section">
+    <div class="section-label">The Material Goes Deeper</div>
+    <h2>Get what we're building for this lane.</h2>
+    <p>
+      Resources, field notes, and content built specifically for Christie's work — when it's ready, not on a schedule.
+      No filler. No soft Christian aesthetics. You can leave whenever.
+    </p>
+    <form id="wife-email-form" novalidate>
+      <input type="hidden" id="utm_source" name="utm_source" value="">
+      <input type="hidden" id="utm_medium" name="utm_medium" value="">
+      <input type="hidden" id="utm_campaign" name="utm_campaign" value="">
+      <input type="hidden" id="utm_content" name="utm_content" value="">
+      <div class="email-row">
+        <input
+          type="email"
+          id="wife-email"
+          placeholder="Your email address"
+          autocomplete="email"
+          required
+        >
+        <button type="submit" id="wife-submit">Join &rarr;</button>
+      </div>
+    </form>
+    <div class="email-success" id="email-success">You're in. Watch your inbox.</div>
+    <div class="email-error" id="email-error"></div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- Field Manual CTA -->
+  <div class="manual-cta">
+    <div class="eyebrow">Field Manual</div>
+    <h2>The calling is one page.<br>The Field Manual is thirteen chapters.</h2>
+    <p>
+      Thirteen chapters. Verse-by-verse. No popular frameworks, no personality typing —
+      just what Scripture actually says and what it demands. Built for women who want to run it, not just read it.
+    </p>
+    <a
+      href="/checkout?slug=biblical-man-field-manual&utm_content=wife&utm_campaign=womanhood"
+      class="manual-btn"
+      id="manual-cta-btn"
+    >Get the Field Manual &mdash; $77</a>
+    <span class="manual-price-note">One-time. No subscription. Yours permanently.</span>
+  </div>
+
+  <!-- Secondary CTA — FaithWall Household -->
+  <div class="secondary-cta">
+    <p>
+      Looking to guard your household? FaithWall filters what enters — porn, gambling, gossip, secular noise — and replaces it with Scripture. Household plan covers the whole home.
+    </p>
+    <a
+      href="/checkout?slug=faithwall-household&utm_content=wife&utm_campaign=womanhood"
+      class="secondary-btn"
+      id="secondary-cta-btn"
+    >FaithWall Household Plan &mdash; $39.99</a>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <p>
+    <a href="https://deadhidden.org">Dead Hidden</a> &nbsp;|&nbsp;
+    Questions: <a href="mailto:support@deadhidden.org">support@deadhidden.org</a>
+  </p>
+</footer>
+
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1648664066389309');
+fbq('track', 'PageView');
+fbq('track', 'ViewContent', {
+  content_name: 'wife_grid',
+  content_category: 'narrative_landing'
+});
+</script>
+<noscript>
+  <img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1648664066389309&ev=PageView&noscript=1"/>
+</noscript>
+
+<!-- UTM capture + email form handler -->
+<script>
+(function() {
+  // Capture UTM params from URL on mount
+  var params = new URLSearchParams(window.location.search);
+  var utmSource   = params.get('utm_source')   || '';
+  var utmMedium   = params.get('utm_medium')   || '';
+  var utmCampaign = params.get('utm_campaign') || '';
+  var utmContent  = params.get('utm_content')  || '';
+
+  document.getElementById('utm_source').value   = utmSource;
+  document.getElementById('utm_medium').value   = utmMedium;
+  document.getElementById('utm_campaign').value = utmCampaign;
+  document.getElementById('utm_content').value  = utmContent;
+
+  // Build source string for DB
+  var source = 'os_wife';
+  if (utmSource) source = 'os_wife|' + utmSource;
+
+  // Append UTM params to primary CTA button if present
+  if (utmSource || utmMedium || utmCampaign || utmContent) {
+    var btn = document.getElementById('manual-cta-btn');
+    var ctaUrl = new URL(btn.getAttribute('href'), window.location.origin);
+    if (utmSource)   ctaUrl.searchParams.set('utm_source', utmSource);
+    if (utmMedium)   ctaUrl.searchParams.set('utm_medium', utmMedium);
+    if (utmCampaign) ctaUrl.searchParams.set('utm_campaign', utmCampaign);
+    // utm_content=wife already set in base href
+    btn.setAttribute('href', ctaUrl.pathname + ctaUrl.search);
+
+    // Also append to secondary CTA
+    var btn2 = document.getElementById('secondary-cta-btn');
+    var ctaUrl2 = new URL(btn2.getAttribute('href'), window.location.origin);
+    if (utmSource)   ctaUrl2.searchParams.set('utm_source', utmSource);
+    if (utmMedium)   ctaUrl2.searchParams.set('utm_medium', utmMedium);
+    if (utmCampaign) ctaUrl2.searchParams.set('utm_campaign', utmCampaign);
+    btn2.setAttribute('href', ctaUrl2.pathname + ctaUrl2.search);
+  }
+
+  // Email form
+  var form      = document.getElementById('wife-email-form');
+  var submitBtn = document.getElementById('wife-submit');
+  var errorEl   = document.getElementById('email-error');
+  var successEl = document.getElementById('email-success');
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    var email = document.getElementById('wife-email').value.trim();
+    if (!email) return;
+
+    errorEl.style.display = 'none';
+    errorEl.textContent = '';
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Joining...';
+
+    try {
+      var resp = await fetch('/api/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email, source: source })
+      });
+
+      var data = await resp.json();
+
+      if (resp.ok) {
+        if (typeof fbq === 'function') fbq('track', 'Lead');
+        form.style.display = 'none';
+        successEl.style.display = 'block';
+      } else if (resp.status === 409) {
+        form.style.display = 'none';
+        successEl.textContent = "You're already on the list.";
+        successEl.style.display = 'block';
+      } else {
+        errorEl.textContent = data.message || 'Something went wrong. Please try again.';
+        errorEl.style.display = 'block';
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Join \u2192';
+      }
+    } catch (err) {
+      errorEl.textContent = 'Connection failed. Check your connection and try again.';
+      errorEl.style.display = 'block';
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Join \u2192';
+    }
+  });
+})();
+</script>
+
+</body>
+</html>

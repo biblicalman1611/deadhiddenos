@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome — DeadHiddenOS</title>
+
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1648664066389309');
+    fbq('track', 'PageView');
+    fbq('track', 'Lead');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1648664066389309&ev=Lead&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bone: #f5f0e8;
+            --ink: #1a1a1a;
+            --blood: #8b2500;
+            --rust: #a0522d;
+        }
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--ink);
+            color: var(--bone);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            text-align: center;
+            padding: 60px 24px;
+            max-width: 520px;
+        }
+        h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.4rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        h1 span { color: var(--blood); }
+        p {
+            font-size: 1.1rem;
+            color: rgba(245,240,232,0.6);
+            line-height: 1.7;
+            margin-bottom: 32px;
+        }
+        a {
+            display: inline-block;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--bone);
+            text-decoration: none;
+            border: 1px solid rgba(139,37,0,0.4);
+            padding: 14px 36px;
+            transition: border-color 0.3s;
+        }
+        a:hover { border-color: var(--blood); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>You're <span>in.</span></h1>
+        <p>Welcome to DeadHiddenOS. Your account is ready.</p>
+        <a href="/">Back to HQ</a>
+    </div>
+</body>
+</html>

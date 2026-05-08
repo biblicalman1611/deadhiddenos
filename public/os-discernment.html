@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Discernment Is Not Suspicion — Dead Hidden</title>
+  <meta name="description" content="Scripture gives a grid, not a feeling. Discernment is not suspicion — it is the practice of seeing clearly what is already true.">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:           #111;
+      --bg2:          #1a1a1a;
+      --bg3:          #222;
+      --border:       rgba(139,37,0,0.2);
+      --border-focus: #8b2500;
+      --text:         #f5f0e8;
+      --text-dim:     rgba(245,240,232,0.55);
+      --text-faint:   rgba(245,240,232,0.25);
+      --accent:       #8b2500;
+      --accent-hover: #a02c00;
+      --label:        #a0522d;
+    }
+
+    html { background: var(--bg); }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Georgia', serif;
+      min-height: 100vh;
+    }
+
+    /* ---- Header ---- */
+    .site-header {
+      border-bottom: 1px solid var(--border);
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+    }
+    .brand {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    /* ---- Layout ---- */
+    .container {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 64px 24px 96px;
+    }
+
+    /* ---- Eyebrow ---- */
+    .eyebrow {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--label);
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    /* ---- Headline ---- */
+    h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      margin-bottom: 28px;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--text-dim);
+    }
+
+    /* ---- Body prose ---- */
+    .lead {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--text-dim);
+      margin-bottom: 40px;
+      max-width: 560px;
+    }
+
+    .lead strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* ---- Divider ---- */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 48px 0;
+    }
+
+    /* ---- Section label ---- */
+    .section-label {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--label);
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    /* ---- Scripture grid ---- */
+    .scripture-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-bottom: 48px;
+    }
+
+    .scripture-item {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      padding: 22px 24px;
+    }
+
+    .scripture-ref {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--label);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .scripture-text {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: var(--text);
+      font-style: italic;
+    }
+
+    .scripture-note {
+      margin-top: 10px;
+      font-family: 'Arial', sans-serif;
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      font-style: normal;
+      line-height: 1.55;
+    }
+
+    /* ---- Email capture ---- */
+    .email-section {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      padding: 32px 28px;
+      margin-bottom: 48px;
+    }
+
+    .email-section h2 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+    }
+
+    .email-section p {
+      font-size: 0.93rem;
+      color: var(--text-dim);
+      line-height: 1.65;
+      margin-bottom: 20px;
+    }
+
+    .email-row {
+      display: flex;
+      gap: 0;
+      flex-wrap: wrap;
+    }
+
+    .email-row input[type="email"] {
+      flex: 1 1 220px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-right: none;
+      color: var(--text);
+      font-family: 'Georgia', serif;
+      font-size: 1rem;
+      padding: 14px 18px;
+      outline: none;
+      transition: border-color 0.15s;
+      -webkit-appearance: none;
+      min-width: 0;
+    }
+
+    .email-row input[type="email"]::placeholder {
+      color: var(--text-faint);
+    }
+
+    .email-row input[type="email"]:focus {
+      border-color: var(--border-focus);
+    }
+
+    .email-row button {
+      background: var(--accent);
+      color: var(--text);
+      border: none;
+      padding: 14px 28px;
+      font-family: 'Arial', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.2s;
+      flex-shrink: 0;
+    }
+
+    .email-row button:hover:not(:disabled) {
+      background: var(--accent-hover);
+    }
+
+    .email-row button:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+
+    .email-success {
+      display: none;
+      font-family: 'Arial', sans-serif;
+      font-size: 0.85rem;
+      color: #a3e4a3;
+      letter-spacing: 1px;
+      margin-top: 12px;
+    }
+
+    .email-error {
+      display: none;
+      font-size: 0.88rem;
+      color: #fca5a5;
+      margin-top: 10px;
+      line-height: 1.5;
+    }
+
+    /* ---- Field Manual CTA ---- */
+    .manual-cta {
+      background: var(--bg2);
+      border: 1px solid rgba(139,37,0,0.45);
+      padding: 32px 28px;
+      margin-bottom: 48px;
+    }
+
+    .manual-cta .eyebrow {
+      margin-bottom: 14px;
+    }
+
+    .manual-cta h2 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+
+    .manual-cta p {
+      font-size: 0.93rem;
+      color: var(--text-dim);
+      line-height: 1.65;
+      margin-bottom: 24px;
+    }
+
+    .manual-btn {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--text);
+      text-decoration: none;
+      padding: 16px 36px;
+      font-family: 'Arial', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      transition: background 0.2s;
+    }
+
+    .manual-btn:hover {
+      background: var(--accent-hover);
+    }
+
+    .manual-price-note {
+      display: block;
+      margin-top: 12px;
+      font-family: 'Arial', sans-serif;
+      font-size: 0.75rem;
+      color: var(--text-faint);
+      letter-spacing: 1px;
+    }
+
+    /* ---- Footer ---- */
+    .site-footer {
+      margin-top: 80px;
+      padding: 32px 24px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+    .site-footer p {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.75rem;
+      color: var(--text-faint);
+      letter-spacing: 1px;
+    }
+    .site-footer a {
+      color: rgba(245,240,232,0.35);
+      text-decoration: none;
+    }
+    .site-footer a:hover { color: var(--text-dim); }
+
+    /* ---- Mobile ---- */
+    @media (max-width: 480px) {
+      .email-row { flex-direction: column; }
+      .email-row input[type="email"] { border-right: 1px solid var(--border); border-bottom: none; }
+      .email-row button { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="https://deadhidden.org" class="brand">Dead Hidden</a>
+</header>
+
+<main class="container">
+
+  <!-- Hero -->
+  <div class="eyebrow">Dead Hidden OS</div>
+  <h1>Discernment is not<br><em>suspicion.</em></h1>
+  <p class="lead">
+    Suspicion starts with a feeling and hunts for proof.<br>
+    <strong>Discernment starts with Scripture and sees what is already true.</strong><br>
+    One is a posture of fear. The other is a discipline of sight.
+    Scripture gives a grid — not a vibe, not a gut instinct, not a personality type.
+    A grid. Here is what it looks like.
+  </p>
+
+  <hr class="divider">
+
+  <!-- Scripture Grid -->
+  <div class="section-label">The Grid Scripture Gives</div>
+  <div class="scripture-grid">
+
+    <div class="scripture-item">
+      <div class="scripture-ref">Hebrews 5:14</div>
+      <div class="scripture-text">
+        "But solid food is for the mature, for those who have their powers of discernment
+        trained by constant practice to distinguish good from evil."
+      </div>
+      <div class="scripture-note">
+        Discernment is trained. Not gifted in a moment — built through repetition.
+        The word is <em>hexis</em>: a habit of the body, a muscle. It atrophies without use.
+      </div>
+    </div>
+
+    <div class="scripture-item">
+      <div class="scripture-ref">1 John 4:1</div>
+      <div class="scripture-text">
+        "Beloved, do not believe every spirit, but test the spirits to see whether they are from God,
+        for many false prophets have gone out into the world."
+      </div>
+      <div class="scripture-note">
+        Test is an imperative. Not a suggestion. Every spirit — including the ones that sound right,
+        the ones your community endorses, the ones you want to be true.
+      </div>
+    </div>
+
+    <div class="scripture-item">
+      <div class="scripture-ref">Romans 12:2</div>
+      <div class="scripture-text">
+        "Do not be conformed to this world, but be transformed by the renewal of your mind,
+        that by testing you may discern what is the will of God, what is good and acceptable and perfect."
+      </div>
+      <div class="scripture-note">
+        Discernment is downstream of mind renewal. A mind still shaped by the age
+        cannot reliably test what belongs to the age. Transformation comes first.
+      </div>
+    </div>
+
+    <div class="scripture-item">
+      <div class="scripture-ref">Philippians 1:9–10</div>
+      <div class="scripture-text">
+        "And it is my prayer that your love may abound more and more, with knowledge and all discernment,
+        so that you may approve what is excellent, and so be pure and blameless for the day of Christ."
+      </div>
+      <div class="scripture-note">
+        Discernment is not cold analysis — it runs through love. Knowledge without love becomes
+        a weapon. Love without knowledge becomes sentimentality that cannot protect what it claims to love.
+      </div>
+    </div>
+
+    <div class="scripture-item">
+      <div class="scripture-ref">Proverbs 2:3–6</div>
+      <div class="scripture-text">
+        "Yes, if you call out for insight and raise your voice for understanding,
+        if you seek it like silver and search for it as for hidden treasures,
+        then you will understand the fear of the LORD and find the knowledge of God.
+        For the LORD gives wisdom; from his mouth come knowledge and understanding."
+      </div>
+      <div class="scripture-note">
+        Discernment is given — and it is sought. Both are true. The seeking is the posture
+        that receives what God gives. Passive waiting is not the posture Scripture describes.
+      </div>
+    </div>
+
+    <div class="scripture-item">
+      <div class="scripture-ref">James 1:5</div>
+      <div class="scripture-text">
+        "If any of you lacks wisdom, let him ask God, who gives generously to all without reproach,
+        and it will be given him."
+      </div>
+      <div class="scripture-note">
+        The condition is asking. Not qualifying. Not earning it.
+        The reproach is zero — you are not condemned for needing it.
+      </div>
+    </div>
+
+    <div class="scripture-item">
+      <div class="scripture-ref">Matthew 7:15–16</div>
+      <div class="scripture-text">
+        "Beware of false prophets, who come to you in sheep's clothing but inwardly are ravenous wolves.
+        You will recognize them by their fruits."
+      </div>
+      <div class="scripture-note">
+        The test is observable. Fruit. Not charisma, not credentials, not crowd size.
+        Patience is required — fruit takes time. But it is not hidden.
+      </div>
+    </div>
+
+  </div>
+
+  <hr class="divider">
+
+  <!-- Email Capture -->
+  <div class="email-section" id="email-section">
+    <div class="section-label">Stay sharp</div>
+    <h2>Get the material that goes deeper.</h2>
+    <p>
+      New resources, study notes, and field tools — when they're ready, not on a schedule.
+      No filler. You can leave whenever.
+    </p>
+    <form id="discernment-email-form" novalidate>
+      <input type="hidden" id="utm_source" name="utm_source" value="">
+      <input type="hidden" id="utm_medium" name="utm_medium" value="">
+      <input type="hidden" id="utm_campaign" name="utm_campaign" value="">
+      <input type="hidden" id="utm_content" name="utm_content" value="">
+      <div class="email-row">
+        <input
+          type="email"
+          id="discernment-email"
+          placeholder="Your email address"
+          autocomplete="email"
+          required
+        >
+        <button type="submit" id="discernment-submit">Join &rarr;</button>
+      </div>
+    </form>
+    <div class="email-success" id="email-success">You're in. Watch your inbox.</div>
+    <div class="email-error" id="email-error"></div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- Field Manual CTA -->
+  <div class="manual-cta">
+    <div class="eyebrow">Field Manual</div>
+    <h2>The grid is one chapter.<br>The Field Manual is thirteen.</h2>
+    <p>
+      Thirteen chapters. Verse-by-verse. No popular frameworks, no personality typing —
+      just what Scripture actually says and what it demands of you.
+      Built for men who want to run it, not just read it.
+    </p>
+    <a
+      href="/checkout?slug=biblical-man-field-manual&utm_content=discernment"
+      class="manual-btn"
+      id="manual-cta-btn"
+    >Run the Field Manual &mdash; $77</a>
+    <span class="manual-price-note">One-time. No subscription. Yours permanently.</span>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <p>
+    <a href="https://deadhidden.org">Dead Hidden</a> &nbsp;|&nbsp;
+    Questions: <a href="mailto:support@deadhidden.org">support@deadhidden.org</a>
+  </p>
+</footer>
+
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1648664066389309');
+fbq('track', 'PageView');
+fbq('track', 'ViewContent', {
+  content_name: 'discernment_grid',
+  content_category: 'narrative_landing'
+});
+</script>
+<noscript>
+  <img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1648664066389309&ev=PageView&noscript=1"/>
+</noscript>
+
+<!-- UTM capture + email form handler -->
+<script>
+(function() {
+  // Capture UTM params from URL on mount
+  var params = new URLSearchParams(window.location.search);
+  var utmSource   = params.get('utm_source')   || '';
+  var utmMedium   = params.get('utm_medium')   || '';
+  var utmCampaign = params.get('utm_campaign') || '';
+  var utmContent  = params.get('utm_content')  || '';
+
+  document.getElementById('utm_source').value   = utmSource;
+  document.getElementById('utm_medium').value   = utmMedium;
+  document.getElementById('utm_campaign').value = utmCampaign;
+  document.getElementById('utm_content').value  = utmContent;
+
+  // Build source string for DB (consistent with /os signup conventions)
+  var source = 'os_discernment';
+  if (utmSource) source = 'os_discernment|' + utmSource;
+
+  // Append UTM params to CTA button if present
+  if (utmSource || utmMedium || utmCampaign || utmContent) {
+    var btn = document.getElementById('manual-cta-btn');
+    var ctaUrl = new URL(btn.getAttribute('href'), window.location.origin);
+    if (utmSource)   ctaUrl.searchParams.set('utm_source', utmSource);
+    if (utmMedium)   ctaUrl.searchParams.set('utm_medium', utmMedium);
+    if (utmCampaign) ctaUrl.searchParams.set('utm_campaign', utmCampaign);
+    // utm_content is already set to 'discernment' in the base href
+    btn.setAttribute('href', ctaUrl.pathname + ctaUrl.search);
+  }
+
+  // Email form
+  var form      = document.getElementById('discernment-email-form');
+  var submitBtn = document.getElementById('discernment-submit');
+  var errorEl   = document.getElementById('email-error');
+  var successEl = document.getElementById('email-success');
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    var email = document.getElementById('discernment-email').value.trim();
+    if (!email) return;
+
+    errorEl.style.display = 'none';
+    errorEl.textContent = '';
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Joining...';
+
+    try {
+      var resp = await fetch('/api/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email, source: source })
+      });
+
+      var data = await resp.json();
+
+      if (resp.ok) {
+        if (typeof fbq === 'function') fbq('track', 'Lead');
+        form.style.display = 'none';
+        successEl.style.display = 'block';
+      } else if (resp.status === 409) {
+        form.style.display = 'none';
+        successEl.textContent = "You're already on the list.";
+        successEl.style.display = 'block';
+      } else {
+        errorEl.textContent = data.message || 'Something went wrong. Please try again.';
+        errorEl.style.display = 'block';
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Join \u2192';
+      }
+    } catch (err) {
+      errorEl.textContent = 'Connection failed. Check your connection and try again.';
+      errorEl.style.display = 'block';
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Join \u2192';
+    }
+  });
+})();
+</script>
+
+</body>
+</html>

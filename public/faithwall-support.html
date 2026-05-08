@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Support — FaithWall</title>
+  <meta name="description" content="FaithWall support — installation help, common issues, FAQ, and contact.">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #000000;
+      color: #e8dfc8;
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 17px;
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: #c9a227; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    code {
+      background: #0f0f0f;
+      border: 1px solid #2a2010;
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-size: 0.88em;
+      color: #c9a227;
+      font-family: 'Courier New', monospace;
+    }
+
+    /* Top nav */
+    .topnav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 8vw;
+      border-bottom: 1px solid #1a1507;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: #e8d48a;
+      text-decoration: none;
+    }
+
+    .brand-icon {
+      width: 30px;
+      height: 30px;
+      background: linear-gradient(135deg, #c9a227 0%, #8a6b10 100%);
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      color: #000;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      font-size: 0.85rem;
+    }
+
+    .nav-links a {
+      color: rgba(232, 223, 200, 0.45);
+    }
+
+    .nav-links a:hover {
+      color: #c9a227;
+      text-decoration: none;
+    }
+
+    /* Page layout */
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 64px 5vw 80px;
+    }
+
+    .page-label {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #c9a227;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: normal;
+      color: #f0ebe0;
+      line-height: 1.3;
+      margin-bottom: 36px;
+    }
+
+    h2 {
+      font-size: 1.05rem;
+      font-weight: normal;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      color: #c9a227;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      margin-top: 52px;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #1a1507;
+    }
+
+    h3 {
+      font-size: 1.05rem;
+      font-weight: normal;
+      color: #f0ebe0;
+      margin-top: 28px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: rgba(232, 223, 200, 0.78);
+      margin-bottom: 18px;
+    }
+
+    p strong {
+      color: #e8dfc8;
+      font-weight: normal;
+    }
+
+    ol, ul {
+      padding-left: 22px;
+      margin-bottom: 18px;
+    }
+
+    li {
+      color: rgba(232, 223, 200, 0.78);
+      margin-bottom: 10px;
+    }
+
+    /* Install cards */
+    .install-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .install-card {
+      background: #0a0a0a;
+      border: 1px solid #1e1a10;
+      border-radius: 10px;
+      padding: 20px 22px;
+    }
+
+    .install-card-platform {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #5a4820;
+      margin-bottom: 8px;
+    }
+
+    .install-card h3 {
+      margin-top: 0;
+      margin-bottom: 12px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .install-card ol {
+      padding-left: 18px;
+      margin-bottom: 14px;
+    }
+
+    .install-card li {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      font-size: 0.88rem;
+      margin-bottom: 7px;
+    }
+
+    .install-btn {
+      display: inline-block;
+      background: rgba(201, 162, 39, 0.12);
+      border: 1px solid rgba(201, 162, 39, 0.3);
+      color: #c9a227;
+      padding: 9px 16px;
+      border-radius: 6px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .install-btn:hover {
+      background: rgba(201, 162, 39, 0.2);
+      text-decoration: none;
+    }
+
+    .coming-soon {
+      display: inline-block;
+      background: rgba(80, 80, 80, 0.12);
+      border: 1px solid rgba(80, 80, 80, 0.3);
+      color: #555;
+      padding: 9px 16px;
+      border-radius: 6px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+
+    /* FAQ */
+    .faq-item {
+      border-bottom: 1px solid #111;
+      padding: 20px 0;
+    }
+
+    .faq-item:first-child {
+      border-top: 1px solid #111;
+    }
+
+    .faq-q {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #e8dfc8;
+      margin-bottom: 10px;
+    }
+
+    .faq-a {
+      color: rgba(232, 223, 200, 0.65);
+      font-size: 0.95rem;
+      margin-bottom: 0;
+    }
+
+    /* Contact section */
+    .contact-block {
+      background: #0a0a0a;
+      border: 1px solid #1e1a10;
+      border-radius: 10px;
+      padding: 28px 32px;
+      margin-top: 16px;
+    }
+
+    .contact-block p {
+      margin-bottom: 14px;
+    }
+
+    .contact-block p:last-child {
+      margin-bottom: 0;
+    }
+
+    .contact-email {
+      font-size: 1.05rem;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid #1a1507;
+      padding: 32px 8vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-left {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      font-size: 0.78rem;
+      color: rgba(232, 223, 200, 0.25);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      font-size: 0.78rem;
+    }
+
+    .footer-links a {
+      color: rgba(232, 223, 200, 0.35);
+    }
+
+    .footer-links a:hover {
+      color: #c9a227;
+      text-decoration: none;
+    }
+
+    @media (max-width: 600px) {
+      .topnav { padding: 20px 5vw; }
+      .nav-links { gap: 16px; }
+      .install-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; align-items: flex-start; }
+      .contact-block { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="topnav">
+  <a href="/" class="brand">
+    <div class="brand-icon">✝</div>
+    FaithWall
+  </a>
+  <div class="nav-links">
+    <a href="/privacy">Privacy</a>
+    <a href="/support">Support</a>
+  </div>
+</nav>
+
+<main class="page">
+
+  <div class="page-label">Help</div>
+  <h1>Support</h1>
+
+  <!-- INSTALLATION -->
+  <h2>Installation</h2>
+
+  <div class="install-grid">
+    <div class="install-card">
+      <div class="install-card-platform">Chrome / Chromium</div>
+      <h3>Browser Extension</h3>
+      <ol>
+        <li>Open the Chrome Web Store listing for FaithWall.</li>
+        <li>Click <strong>Add to Chrome</strong>.</li>
+        <li>Confirm the permissions prompt — FaithWall needs network access to run its blocklists.</li>
+        <li>Click the puzzle-piece icon in your toolbar, then FaithWall to pin it.</li>
+        <li>The extension is active immediately. Green status in the popup means protection is on.</li>
+      </ol>
+      <a href="https://chromewebstore.google.com/detail/faithwall" class="install-btn" target="_blank" rel="noopener">Chrome Web Store &rarr;</a>
+    </div>
+    <div class="install-card">
+      <div class="install-card-platform">iPhone / iPad</div>
+      <h3>iOS App</h3>
+      <ol>
+        <li>Download FaithWall from the App Store.</li>
+        <li>Open the app and tap <strong>Enable</strong>.</li>
+        <li>Go to <strong>Settings &rsaquo; Safari &rsaquo; Extensions</strong> and turn FaithWall on.</li>
+        <li>Grant access when prompted — choose "All Websites" for full protection.</li>
+        <li>Return to FaithWall to select which categories to block.</li>
+      </ol>
+      <span class="coming-soon">App Store — Coming Soon</span>
+    </div>
+  </div>
+
+  <!-- COMMON ISSUES -->
+  <h2>Common Issues</h2>
+
+  <h3>Passcode reset</h3>
+  <p>The passcode is stored locally in your browser's extension storage. If you've forgotten it, open the browser's extension management page (Chrome: <code>chrome://extensions</code>), click the FaithWall detail view, and use <strong>Clear site data</strong> or remove and reinstall the extension. Your settings will reset but protection starts immediately on reinstall.</p>
+
+  <h3>Category toggle not saving</h3>
+  <p>FaithWall saves toggle state via <code>chrome.storage.sync</code>. If a toggle reverts after you close the popup, your browser may be blocking extension storage. Check that FaithWall has storage permissions in <code>chrome://extensions</code>. Toggling it off and back on while the popup is open can also help — wait two seconds between changes.</p>
+
+  <h3>Custom domain not blocking</h3>
+  <p>Bundled blocklists cover high-traffic domains in each category. Niche sites won't always be in the list. To block a specific domain: open the FaithWall Options page (click <strong>Full Options</strong> in the popup), scroll to the Custom Domains section, and add the domain without the <code>https://</code> prefix — e.g. <code>example.com</code>. Changes apply within a few seconds.</p>
+
+  <h3>Uninstalling the extension</h3>
+  <p>Right-click the FaithWall icon in your toolbar and select <strong>Remove from Chrome</strong>. Alternatively, go to <code>chrome://extensions</code>, find FaithWall, and click <strong>Remove</strong>. Your blocklists and settings are deleted with the extension.</p>
+
+  <!-- FAQ -->
+  <h2>FAQ</h2>
+
+  <div class="faq-item">
+    <div class="faq-q">Can I set this up for my whole household?</div>
+    <p class="faq-a">Yes — that's the design intent. Install the extension in each browser profile you want protected, or set a passcode in Options so kids can't disable it. On iOS, enable it in Safari settings on each device. One installation does not sync across devices automatically.</p>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">What's blocked by default?</div>
+    <p class="faq-a">Adult content is on by default. Gambling, social media, news doomscroll, and occult/horoscope sites are off by default — enable any category you want blocked. You can toggle each one independently in the popup.</p>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">How does the passcode work?</div>
+    <p class="faq-a">In the Options page you can set a numeric passcode. Once set, toggling protection off or changing category settings requires the passcode. The passcode is stored locally — we don't have it and can't recover it. Forgetting it means reinstalling the extension.</p>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Can a determined person bypass it?</div>
+    <p class="faq-a">A technically motivated adult can remove any browser extension. FaithWall is designed as a faith commitment and household covenant tool, not a parental control product with hardened bypass prevention. If you need OS-level enforcement for minors, combine it with device-level restrictions (Screen Time on iOS, supervised Chrome profiles). FaithWall adds friction and accountability — it's not a prison wall.</p>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Does it slow down my browser?</div>
+    <p class="faq-a">No measurable difference in practice. FaithWall uses Chrome's <code>declarativeNetRequest</code> API, which the browser evaluates natively before making requests. There's no JavaScript running on every page load — blocking decisions happen at the network layer.</p>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Can I add my own domains to block?</div>
+    <p class="faq-a">Yes. Open the Options page from the popup and scroll to Custom Domains. Enter one domain per line, no protocol prefix. Those domains will be added to your block rules and take effect within a few seconds.</p>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Does FaithWall collect any data about what I browse?</div>
+    <p class="faq-a">No. The blocklists run locally on your device. Nothing about your browsing is transmitted anywhere. See the <a href="/privacy">Privacy Policy</a> for the full explanation.</p>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Where's the source code?</div>
+    <p class="faq-a">On GitHub: <a href="https://github.com/Polsia-Inc/deadhiddenos/tree/main/faithwall-extension" target="_blank" rel="noopener">github.com/Polsia-Inc/deadhiddenos — faithwall-extension</a>. Technical users can inspect the blocklists, permissions, and background logic there.</p>
+  </div>
+
+  <!-- CONTACT -->
+  <h2>Contact</h2>
+
+  <div class="contact-block">
+    <p>For anything not covered above — a bug, a blocked site that shouldn't be, a feature request, or a question about the iOS app:</p>
+    <p class="contact-email"><a href="mailto:adam@deadhidden.org">adam@deadhidden.org</a></p>
+    <p>We read every message. Response time is typically within a day or two.</p>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-left">&copy; 2026 FaithWall / Dead Hidden Ministries. All rights reserved.</div>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/privacy">Privacy</a>
+    <a href="/support">Support</a>
+    <a href="https://github.com/Polsia-Inc/deadhiddenos/tree/main/faithwall-extension" target="_blank" rel="noopener">GitHub</a>
+  </div>
+</footer>
+
+</body>
+</html>

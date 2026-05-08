@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FaithWall — Dashboard</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink:    #0f0f0f;
+    --char:   #1a1a1a;
+    --panel:  #1e1e1e;
+    --border: rgba(201,162,39,0.15);
+    --gold:   #c9a227;
+    --gold2:  #a08520;
+    --bone:   #f5f0e8;
+    --muted:  rgba(245,240,232,0.55);
+    --dim:    rgba(245,240,232,0.25);
+  }
+
+  html { font-size: 16px; }
+
+  body {
+    background: var(--ink);
+    color: var(--bone);
+    font-family: 'DM Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+
+  /* ── TOP BAR ── */
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--border);
+  }
+  .topbar-brand {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 700;
+  }
+  .topbar-logout {
+    background: none;
+    border: none;
+    color: var(--dim);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.78rem;
+    cursor: pointer;
+    letter-spacing: 0.03em;
+    transition: color 0.2s;
+  }
+  .topbar-logout:hover { color: var(--bone); }
+
+  /* ── MAIN LAYOUT ── */
+  .main {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+
+  /* ── LOADING / ERROR STATES ── */
+  .loading-state, .error-state, .login-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+    text-align: center;
+    gap: 16px;
+  }
+  .loading-ring {
+    width: 32px; height: 32px;
+    border: 2px solid var(--border);
+    border-top-color: var(--gold);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loading-text { color: var(--muted); font-size: 0.88rem; }
+
+  /* ── LOGIN FORM ── */
+  .login-state { gap: 0; }
+  .login-eyebrow {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.62rem;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--gold2);
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .login-title {
+    font-family: 'IM Fell English', Georgia, serif;
+    font-size: 1.5rem;
+    color: var(--bone);
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+  .login-sub {
+    color: var(--muted);
+    font-size: 0.88rem;
+    line-height: 1.6;
+    max-width: 340px;
+    margin-bottom: 32px;
+  }
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    max-width: 360px;
+  }
+  .login-input {
+    width: 100%;
+    padding: 13px 16px;
+    background: var(--char);
+    border: 1px solid rgba(201,162,39,0.2);
+    border-radius: 4px;
+    color: var(--bone);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .login-input:focus { border-color: var(--gold); }
+  .login-input::placeholder { color: var(--dim); }
+  .login-btn {
+    width: 100%;
+    padding: 13px;
+    background: var(--gold);
+    color: var(--ink);
+    border: none;
+    border-radius: 4px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+  .login-btn:hover { opacity: 0.88; }
+  .login-btn:disabled { opacity: 0.5; cursor: default; }
+  .login-message {
+    font-size: 0.83rem;
+    text-align: center;
+    min-height: 20px;
+    margin-top: 4px;
+  }
+  .login-message.success { color: #4ade80; }
+  .login-message.error   { color: #f87171; }
+
+  /* ── MODULES ── */
+  .module {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 28px 28px 24px;
+    margin-bottom: 20px;
+    background: var(--panel);
+  }
+
+  /* ── COVENANT BLOCK ── */
+  .covenant-eyebrow {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.62rem;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--gold2);
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .covenant-day {
+    font-family: 'IM Fell English', Georgia, serif;
+    font-size: 2rem;
+    color: var(--bone);
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+  .covenant-day span {
+    color: var(--gold);
+  }
+  .covenant-divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 20px 0;
+  }
+  .verse-ref {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.62rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold2);
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .verse-text {
+    font-family: 'IM Fell English', Georgia, serif;
+    font-style: italic;
+    color: rgba(245,240,232,0.72);
+    font-size: 0.96rem;
+    line-height: 1.85;
+  }
+
+  /* ── HOUSEHOLD SEATS BLOCK ── */
+  .seats-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .seats-eyebrow {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.62rem;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--gold2);
+    font-weight: 700;
+  }
+  .seats-count {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-weight: 500;
+  }
+  .seats-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+    min-height: 44px;
+  }
+  .seat-chip {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--char);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 6px 14px 6px 8px;
+  }
+  .seat-avatar {
+    width: 28px; height: 28px;
+    background: rgba(201,162,39,0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+  .seat-label {
+    font-size: 0.8rem;
+    color: var(--bone);
+  }
+  .seat-pending {
+    font-size: 0.72rem;
+    color: var(--dim);
+    margin-left: 2px;
+  }
+
+  /* Add seat form */
+  .add-seat-toggle {
+    background: none;
+    border: 1px solid rgba(201,162,39,0.3);
+    color: var(--gold);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 9px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .add-seat-toggle:hover {
+    background: rgba(201,162,39,0.08);
+  }
+  .add-seat-form {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+  }
+  .add-seat-form.open { display: flex; }
+  .add-seat-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .seat-input {
+    flex: 1;
+    min-width: 0;
+    padding: 10px 14px;
+    background: var(--char);
+    border: 1px solid rgba(201,162,39,0.2);
+    border-radius: 4px;
+    color: var(--bone);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .seat-input:focus { border-color: var(--gold); }
+  .seat-input::placeholder { color: var(--dim); }
+  .seat-input-sm {
+    width: 80px;
+    flex: 0 0 80px;
+  }
+  .seat-submit-btn {
+    padding: 10px 18px;
+    background: var(--gold);
+    color: var(--ink);
+    border: none;
+    border-radius: 4px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: opacity 0.2s;
+    align-self: flex-start;
+  }
+  .seat-submit-btn:disabled { opacity: 0.5; cursor: default; }
+  .seat-message {
+    font-size: 0.8rem;
+    min-height: 18px;
+  }
+  .seat-message.success { color: #4ade80; }
+  .seat-message.error   { color: #f87171; }
+
+  /* ── SHARE BLOCK ── */
+  .share-eyebrow {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.62rem;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--gold2);
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .share-headline {
+    font-family: 'IM Fell English', Georgia, serif;
+    font-size: 1.25rem;
+    color: var(--bone);
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+  .share-subline {
+    color: var(--muted);
+    font-size: 0.88rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  .share-link-block {
+    background: var(--char);
+    border-left: 3px solid var(--gold);
+    padding: 12px 16px;
+    border-radius: 0 4px 4px 0;
+    margin-bottom: 16px;
+    word-break: break-all;
+    font-size: 0.78rem;
+    color: var(--muted);
+    font-family: 'DM Mono', 'Courier New', monospace;
+    line-height: 1.5;
+  }
+  .share-btns {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .share-btn {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 10px 16px;
+    border-radius: 4px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .share-btn-copy {
+    background: var(--gold);
+    color: var(--ink);
+    border: 1px solid transparent;
+  }
+  .share-btn-copy:hover { opacity: 0.88; }
+  .share-btn-x {
+    background: transparent;
+    color: var(--bone);
+    border: 1px solid rgba(245,240,232,0.2);
+  }
+  .share-btn-x:hover { border-color: var(--bone); }
+  .share-btn-email {
+    background: transparent;
+    color: var(--muted);
+    border: 1px solid var(--border);
+  }
+  .share-btn-email:hover { color: var(--bone); border-color: rgba(245,240,232,0.2); }
+  .share-btn svg {
+    width: 14px; height: 14px;
+    flex-shrink: 0;
+  }
+  .copy-feedback {
+    font-size: 0.75rem;
+    color: #4ade80;
+    display: none;
+    align-items: center;
+    gap: 4px;
+  }
+  .copy-feedback.visible { display: flex; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 480px) {
+    .main { padding: 28px 16px 64px; }
+    .module { padding: 20px 18px 18px; }
+    .covenant-day { font-size: 1.6rem; }
+    .share-btns { flex-direction: column; }
+    .share-btn { justify-content: center; }
+    .add-seat-row { flex-direction: column; }
+    .seat-input-sm { width: 100%; flex: 1; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-brand">FaithWall</div>
+  <button class="topbar-logout" id="logout-btn" style="display:none">Sign out</button>
+</div>
+
+<!-- MAIN -->
+<div class="main" id="app">
+
+  <!-- LOGIN STATE -->
+  <div id="login-state" class="login-state">
+    <div class="login-eyebrow">FaithWall</div>
+    <div class="login-title">Your dashboard.</div>
+    <div class="login-sub">Enter the email you used to purchase FaithWall. We'll send you a link.</div>
+    <form class="login-form" id="login-form" autocomplete="on">
+      <input
+        type="email"
+        id="login-email"
+        class="login-input"
+        placeholder="you@example.com"
+        autocomplete="email"
+        required
+      >
+      <button type="submit" class="login-btn" id="login-btn">Send access link</button>
+      <div class="login-message" id="login-message"></div>
+    </form>
+  </div>
+
+  <!-- LOADING STATE -->
+  <div id="loading-state" class="loading-state" style="display:none">
+    <div class="loading-ring"></div>
+    <div class="loading-text">Loading your dashboard…</div>
+  </div>
+
+  <!-- DASHBOARD STATE -->
+  <div id="dashboard-state" style="display:none">
+
+    <!-- 1. COVENANT BLOCK -->
+    <div class="module" id="covenant-module">
+      <div class="covenant-eyebrow">The covenant</div>
+      <div class="covenant-day" id="covenant-day-display">Day —</div>
+
+      <hr class="covenant-divider">
+
+      <div class="verse-ref">Job 31:1</div>
+      <div class="verse-text">
+        "I made a covenant with mine eyes;<br>
+        why then should I think upon a maid?<br>
+        <br>
+        For what portion of God is there from above?<br>
+        and what inheritance of the Almighty from on high?<br>
+        Is not destruction to the wicked?<br>
+        and a strange punishment to the workers of iniquity?<br>
+        Doth not he see my ways,<br>
+        and count all my steps?"
+      </div>
+    </div>
+
+    <!-- 2. HOUSEHOLD SEATS (household plan only) -->
+    <div class="module" id="seats-module" style="display:none">
+      <div class="seats-header">
+        <div>
+          <div class="seats-eyebrow">Household</div>
+        </div>
+        <div class="seats-count" id="seats-count-display"></div>
+      </div>
+
+      <div class="seats-list" id="seats-list"></div>
+
+      <button class="add-seat-toggle" id="add-seat-toggle">+ Add seat</button>
+
+      <div class="add-seat-form" id="add-seat-form">
+        <div class="add-seat-row">
+          <input
+            type="email"
+            id="seat-email"
+            class="seat-input"
+            placeholder="Email (optional)"
+            autocomplete="off"
+          >
+          <input
+            type="text"
+            id="seat-initials"
+            class="seat-input seat-input-sm"
+            placeholder="Initials"
+            maxlength="5"
+            autocomplete="off"
+          >
+          <button type="button" class="seat-submit-btn" id="seat-submit-btn">Add</button>
+        </div>
+        <div class="seat-message" id="seat-message"></div>
+      </div>
+    </div>
+
+    <!-- 3. SHARE BLOCK -->
+    <div class="module" id="share-module">
+      <div class="share-eyebrow">Pass the wall</div>
+      <div class="share-headline">Who else is still hiding?</div>
+      <div class="share-subline">Two weeks in. You know someone who needs this.</div>
+
+      <div class="share-link-block" id="share-link-display"></div>
+
+      <div class="share-btns">
+        <button class="share-btn share-btn-copy" id="copy-link-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+          Copy link
+        </button>
+        <a class="share-btn share-btn-x" id="x-share-btn" href="#" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+          </svg>
+          Share on X
+        </a>
+        <a class="share-btn share-btn-email" id="email-share-btn" href="#" target="_blank">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+          </svg>
+          Send by email
+        </a>
+        <div class="copy-feedback" id="copy-feedback">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:13px;height:13px"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          Copied
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /dashboard-state -->
+</div><!-- /main -->
+
+<script>
+(function() {
+  'use strict';
+
+  const $ = id => document.getElementById(id);
+
+  // ── State ──
+  let buyerData = null;
+
+  // ── Helpers ──
+  function show(el) { el.style.display = ''; }
+  function hide(el) { el.style.display = 'none'; }
+
+  // ── URL token handling ──
+  // If URL has ?token=xxx → call verify-token endpoint to set cookie, then reload clean
+  const params = new URLSearchParams(window.location.search);
+  const urlToken = params.get('token');
+  const seatToken = params.get('seat_token');
+  const urlError = params.get('error');
+  const urlJoined = params.get('joined');
+
+  if (urlToken) {
+    // Redirect to verify endpoint; it sets the cookie and redirects back to /dashboard
+    window.location.href = '/api/faithwall/verify-token?token=' + encodeURIComponent(urlToken);
+    // Stop further execution while redirect happens
+  } else if (seatToken) {
+    window.location.href = '/api/faithwall/accept-seat?token=' + encodeURIComponent(seatToken);
+  } else {
+    // Normal dashboard load
+    init();
+  }
+
+  function init() {
+    // Try to load buyer data (will 401 if not authenticated)
+    show($('loading-state'));
+    hide($('login-state'));
+
+    fetch('/api/faithwall/buyer-me', { credentials: 'same-origin' })
+      .then(r => {
+        if (r.status === 401) {
+          // Not logged in — show login form
+          hide($('loading-state'));
+          show($('login-state'));
+          if (urlError === 'invalid_token' || urlError === 'missing_token') {
+            const msgEl = $('login-message');
+            msgEl.textContent = 'That link has expired or is invalid. Enter your email to get a new one.';
+            msgEl.className = 'login-message error';
+          }
+          return null;
+        }
+        return r.json();
+      })
+      .then(data => {
+        if (!data) return;
+        if (data.error) {
+          hide($('loading-state'));
+          show($('login-state'));
+          return;
+        }
+        buyerData = data;
+        renderDashboard(data);
+        hide($('loading-state'));
+        show($('dashboard-state'));
+        show($('logout-btn'));
+      })
+      .catch(err => {
+        console.error('[fw-dashboard] Load error:', err);
+        hide($('loading-state'));
+        show($('login-state'));
+      });
+  }
+
+  function renderDashboard(data) {
+    // ── Covenant block ──
+    const dayEl = $('covenant-day-display');
+    dayEl.innerHTML = 'Your covenant: day <span>' + data.covenant_day + '.</span>';
+
+    // ── Household seats ──
+    if (data.plan === 'household') {
+      show($('seats-module'));
+      renderSeats(data);
+    }
+
+    // ── Share block ──
+    $('share-link-display').textContent = data.share_url;
+
+    // X share
+    const xText = encodeURIComponent('Job made a covenant with his eyes. So did I. ↓\n\n' + data.share_url);
+    $('x-share-btn').href = 'https://twitter.com/intent/tweet?text=' + xText;
+
+    // Email share
+    const emailSubject = encodeURIComponent('Put the wall up — FaithWall');
+    const emailBody = encodeURIComponent(
+      'Job made a covenant with his eyes.\n\nI did too. FaithWall replaces your browser\'s new tab with Scripture — before your eyes land anywhere else.\n\n' +
+      data.share_url + '\n\nOne-time purchase. No subscription.'
+    );
+    $('email-share-btn').href = 'mailto:?subject=' + emailSubject + '&body=' + emailBody;
+  }
+
+  function renderSeats(data) {
+    const list = $('seats-list');
+    list.innerHTML = '';
+
+    const usedLabel = data.seats_used + '/' + data.seat_limit + ' seats active';
+    $('seats-count-display').textContent = usedLabel;
+
+    // Always show head (buyer themselves) as seat 1
+    const headChip = createSeatChip('You', data.email, true);
+    list.appendChild(headChip);
+
+    // Show invited seats
+    if (data.seats && data.seats.length) {
+      data.seats.forEach(function(s) {
+        const label = s.initials || (s.email ? s.email.split('@')[0].toUpperCase().slice(0, 3) : '?');
+        const chip = createSeatChip(label, s.email || s.initials, s.accepted);
+        list.appendChild(chip);
+      });
+    }
+  }
+
+  function createSeatChip(initials, detail, active) {
+    const chip = document.createElement('div');
+    chip.className = 'seat-chip';
+    chip.innerHTML =
+      '<div class="seat-avatar">' + escHtml(initials.slice(0, 2).toUpperCase()) + '</div>' +
+      '<span class="seat-label">' + escHtml(detail || initials) + '</span>' +
+      (active ? '' : '<span class="seat-pending">(pending)</span>');
+    return chip;
+  }
+
+  function escHtml(str) {
+    return String(str).replace(/[&<>"']/g, function(c) {
+      return ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' })[c];
+    });
+  }
+
+  // ── Login form ──
+  $('login-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const email = $('login-email').value.trim();
+    const btn = $('login-btn');
+    const msg = $('login-message');
+    if (!email) return;
+
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+    msg.textContent = '';
+    msg.className = 'login-message';
+
+    fetch('/api/faithwall/request-access', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email })
+    })
+    .then(r => r.json())
+    .then(data => {
+      btn.disabled = false;
+      btn.textContent = 'Send access link';
+      if (data.success) {
+        msg.textContent = 'Check your inbox. Link sent.';
+        msg.className = 'login-message success';
+        $('login-email').value = '';
+      } else {
+        msg.textContent = data.error || 'Something went wrong. Try again.';
+        msg.className = 'login-message error';
+      }
+    })
+    .catch(function() {
+      btn.disabled = false;
+      btn.textContent = 'Send access link';
+      msg.textContent = 'Could not send link. Check your connection.';
+      msg.className = 'login-message error';
+    });
+  });
+
+  // ── Copy link ──
+  $('copy-link-btn').addEventListener('click', function() {
+    if (!buyerData) return;
+    navigator.clipboard.writeText(buyerData.share_url)
+      .then(function() {
+        const fb = $('copy-feedback');
+        fb.classList.add('visible');
+        setTimeout(function() { fb.classList.remove('visible'); }, 2000);
+      })
+      .catch(function() {
+        // Fallback for older browsers
+        const el = document.createElement('textarea');
+        el.value = buyerData.share_url;
+        el.style.position = 'fixed';
+        el.style.opacity = '0';
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand('copy');
+        document.body.removeChild(el);
+        const fb = $('copy-feedback');
+        fb.classList.add('visible');
+        setTimeout(function() { fb.classList.remove('visible'); }, 2000);
+      });
+  });
+
+  // ── Logout ──
+  $('logout-btn').addEventListener('click', function() {
+    fetch('/api/faithwall/buyer-logout', { method: 'POST', credentials: 'same-origin' })
+      .finally(function() { window.location.reload(); });
+  });
+
+  // ── Add seat form ──
+  $('add-seat-toggle').addEventListener('click', function() {
+    const form = $('add-seat-form');
+    form.classList.toggle('open');
+    if (form.classList.contains('open')) {
+      $('seat-email').focus();
+    }
+  });
+
+  $('seat-submit-btn').addEventListener('click', function() {
+    const email = $('seat-email').value.trim();
+    const initials = $('seat-initials').value.trim();
+    const btn = $('seat-submit-btn');
+    const msg = $('seat-message');
+
+    if (!email && !initials) {
+      msg.textContent = 'Enter an email or initials.';
+      msg.className = 'seat-message error';
+      return;
+    }
+
+    btn.disabled = true;
+    msg.textContent = 'Adding…';
+    msg.className = 'seat-message';
+
+    fetch('/api/faithwall/invite-seat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'same-origin',
+      body: JSON.stringify({ email: email || undefined, initials: initials || undefined })
+    })
+    .then(r => r.json())
+    .then(function(data) {
+      btn.disabled = false;
+      if (data.success) {
+        msg.textContent = email ? 'Invite sent to ' + email + '.' : initials + ' added.';
+        msg.className = 'seat-message success';
+        $('seat-email').value = '';
+        $('seat-initials').value = '';
+        // Refresh dashboard data
+        fetch('/api/faithwall/buyer-me', { credentials: 'same-origin' })
+          .then(r => r.json())
+          .then(function(d) { if (d.ok) { buyerData = d; renderSeats(d); } });
+      } else {
+        msg.textContent = data.message || data.error || 'Could not add seat.';
+        msg.className = 'seat-message error';
+      }
+    })
+    .catch(function() {
+      btn.disabled = false;
+      msg.textContent = 'Connection error. Try again.';
+      msg.className = 'seat-message error';
+    });
+  });
+
+})();
+</script>
+</body>
+</html>

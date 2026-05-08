@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Household on Scripture Is Not a Household on Opinion — Dead Hidden</title>
+  <meta name="description" content="Your household is either commanded or it is improvised. There is no third option. Scripture gives the order. Culture gives the alternative. You choose every day.">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:           #111;
+      --bg2:          #1a1a1a;
+      --bg3:          #222;
+      --border:       rgba(139,37,0,0.2);
+      --border-focus: #8b2500;
+      --text:         #f5f0e8;
+      --text-dim:     rgba(245,240,232,0.55);
+      --text-faint:   rgba(245,240,232,0.25);
+      --accent:       #8b2500;
+      --accent-hover: #a02c00;
+      --label:        #a0522d;
+    }
+
+    html { background: var(--bg); }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Georgia', serif;
+      min-height: 100vh;
+    }
+
+    /* ---- Header ---- */
+    .site-header {
+      border-bottom: 1px solid var(--border);
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+    }
+    .brand {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    /* ---- Layout ---- */
+    .container {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 64px 24px 96px;
+    }
+
+    /* ---- Eyebrow ---- */
+    .eyebrow {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--label);
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    /* ---- Headline ---- */
+    h1 {
+      font-size: clamp(1.75rem, 4.5vw, 2.75rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      margin-bottom: 28px;
+    }
+
+    /* ---- Body prose ---- */
+    .lead {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--text-dim);
+      margin-bottom: 40px;
+      max-width: 560px;
+    }
+
+    .lead strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* ---- Divider ---- */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 48px 0;
+    }
+
+    /* ---- Section label ---- */
+    .section-label {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--label);
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    /* ---- Contrast grid: culture vs. Scripture ---- */
+    .contrast-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      margin-bottom: 48px;
+    }
+
+    .contrast-item {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .contrast-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .contrast-col {
+      padding: 18px 22px 16px;
+    }
+
+    .contrast-col:first-child {
+      border-right: 1px solid var(--border);
+    }
+
+    .contrast-col-label {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .contrast-col-label.culture { color: rgba(245,240,232,0.3); }
+    .contrast-col-label.scripture { color: var(--label); }
+
+    .contrast-col-text {
+      font-size: 0.93rem;
+      line-height: 1.6;
+      color: var(--text-dim);
+    }
+
+    .contrast-col.scripture-side .contrast-col-text {
+      color: var(--text);
+    }
+
+    .contrast-footer {
+      border-top: 1px solid var(--border);
+      padding: 14px 22px;
+      background: var(--bg3);
+    }
+
+    .contrast-ref {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--label);
+      font-weight: 700;
+      display: inline;
+      margin-right: 8px;
+    }
+
+    .contrast-verse {
+      font-size: 0.88rem;
+      line-height: 1.65;
+      color: var(--text-dim);
+      font-style: italic;
+      display: inline;
+    }
+
+    /* ---- Pull quote ---- */
+    .pull-quote {
+      border-left: 3px solid var(--accent);
+      padding: 24px 28px;
+      margin: 48px 0;
+      background: var(--bg2);
+    }
+
+    .pull-quote blockquote {
+      font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+      line-height: 1.55;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      font-style: normal;
+      margin-bottom: 16px;
+    }
+
+    .pull-quote cite {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--label);
+      font-style: normal;
+    }
+
+    /* ---- Christie pointer ---- */
+    .christie-block {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      padding: 28px 24px;
+      margin-bottom: 48px;
+    }
+
+    .christie-block .eyebrow {
+      margin-bottom: 12px;
+    }
+
+    .christie-block h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+    }
+
+    .christie-block p {
+      font-size: 0.93rem;
+      color: var(--text-dim);
+      line-height: 1.65;
+      margin-bottom: 20px;
+    }
+
+    .christie-link {
+      display: inline-block;
+      background: transparent;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      text-decoration: none;
+      padding: 12px 24px;
+      font-family: 'Arial', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .christie-link:hover {
+      background: var(--accent);
+      color: var(--text);
+    }
+
+    /* ---- Email capture ---- */
+    .email-section {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      padding: 32px 28px;
+      margin-bottom: 48px;
+    }
+
+    .email-section h2 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+    }
+
+    .email-section p {
+      font-size: 0.93rem;
+      color: var(--text-dim);
+      line-height: 1.65;
+      margin-bottom: 20px;
+    }
+
+    .email-row {
+      display: flex;
+      gap: 0;
+      flex-wrap: wrap;
+    }
+
+    .email-row input[type="email"] {
+      flex: 1 1 220px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-right: none;
+      color: var(--text);
+      font-family: 'Georgia', serif;
+      font-size: 1rem;
+      padding: 14px 18px;
+      outline: none;
+      transition: border-color 0.15s;
+      -webkit-appearance: none;
+      min-width: 0;
+    }
+
+    .email-row input[type="email"]::placeholder {
+      color: var(--text-faint);
+    }
+
+    .email-row input[type="email"]:focus {
+      border-color: var(--border-focus);
+    }
+
+    .email-row button {
+      background: var(--accent);
+      color: var(--text);
+      border: none;
+      padding: 14px 28px;
+      font-family: 'Arial', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.2s;
+      flex-shrink: 0;
+    }
+
+    .email-row button:hover:not(:disabled) {
+      background: var(--accent-hover);
+    }
+
+    .email-row button:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+
+    .email-success {
+      display: none;
+      font-family: 'Arial', sans-serif;
+      font-size: 0.85rem;
+      color: #a3e4a3;
+      letter-spacing: 1px;
+      margin-top: 12px;
+    }
+
+    .email-error {
+      display: none;
+      font-size: 0.88rem;
+      color: #fca5a5;
+      margin-top: 10px;
+      line-height: 1.5;
+    }
+
+    /* ---- Field Manual CTA ---- */
+    .manual-cta {
+      background: var(--bg2);
+      border: 1px solid rgba(139,37,0,0.45);
+      padding: 32px 28px;
+      margin-bottom: 48px;
+    }
+
+    .manual-cta .eyebrow {
+      margin-bottom: 14px;
+    }
+
+    .manual-cta h2 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+
+    .manual-cta p {
+      font-size: 0.93rem;
+      color: var(--text-dim);
+      line-height: 1.65;
+      margin-bottom: 24px;
+    }
+
+    .manual-btn {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--text);
+      text-decoration: none;
+      padding: 16px 36px;
+      font-family: 'Arial', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      transition: background 0.2s;
+    }
+
+    .manual-btn:hover {
+      background: var(--accent-hover);
+    }
+
+    .manual-price-note {
+      display: block;
+      margin-top: 12px;
+      font-family: 'Arial', sans-serif;
+      font-size: 0.75rem;
+      color: var(--text-faint);
+      letter-spacing: 1px;
+    }
+
+    /* ---- Footer ---- */
+    .site-footer {
+      margin-top: 80px;
+      padding: 32px 24px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+    .site-footer p {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.75rem;
+      color: var(--text-faint);
+      letter-spacing: 1px;
+    }
+    .site-footer a {
+      color: rgba(245,240,232,0.35);
+      text-decoration: none;
+    }
+    .site-footer a:hover { color: var(--text-dim); }
+
+    /* ---- Mobile ---- */
+    @media (max-width: 480px) {
+      .contrast-header { grid-template-columns: 1fr; }
+      .contrast-col:first-child { border-right: none; border-bottom: 1px solid var(--border); }
+      .email-row { flex-direction: column; }
+      .email-row input[type="email"] { border-right: 1px solid var(--border); border-bottom: none; }
+      .email-row button { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="https://deadhidden.org" class="brand">Dead Hidden</a>
+</header>
+
+<main class="container">
+
+  <!-- Hero -->
+  <div class="eyebrow">Dead Hidden OS &mdash; Household</div>
+  <h1>A household on Scripture<br>is not a household on opinion.</h1>
+  <p class="lead">
+    Culture has a model for your household. It changes every decade, apologizes for nothing, and produces the same wreckage on repeat.<br>
+    <strong>Scripture has a model for your household. It does not apologize. It does not update.</strong><br>
+    Husband as head — not as performer of headship, not as the loudest voice in the room. Wife not as accessory to his ambition, not as project waiting to be completed. Children not as projects to optimize, not as extensions of parental identity. These are not roles invented by culture. They were assigned before culture existed.
+  </p>
+
+  <hr class="divider">
+
+  <!-- Contrast Grid -->
+  <div class="section-label">Scripture vs. the Alternative</div>
+  <div class="contrast-grid">
+
+    <div class="contrast-item">
+      <div class="contrast-header">
+        <div class="contrast-col">
+          <div class="contrast-col-label culture">Culture says</div>
+          <div class="contrast-col-text">The husband leads when the wife agrees. Headship is earned through performance and constantly re-auditioned.</div>
+        </div>
+        <div class="contrast-col scripture-side">
+          <div class="contrast-col-label scripture">Scripture commands</div>
+          <div class="contrast-col-text">The husband is the head of the wife as Christ is the head of the church. Not conditionally. Not when she agrees.</div>
+        </div>
+      </div>
+      <div class="contrast-footer">
+        <span class="contrast-ref">Eph. 5:23</span>
+        <span class="contrast-verse">"For the husband is the head of the wife even as Christ is the head of the church, his body, and is himself its Saviour."</span>
+      </div>
+    </div>
+
+    <div class="contrast-item">
+      <div class="contrast-header">
+        <div class="contrast-col">
+          <div class="contrast-col-label culture">Culture says</div>
+          <div class="contrast-col-text">A wife who submits has settled. Submission is weakness dressed up in religious language for women who couldn't negotiate better.</div>
+        </div>
+        <div class="contrast-col scripture-side">
+          <div class="contrast-col-label scripture">Scripture commands</div>
+          <div class="contrast-col-text">Wives, submit to your own husbands, as unto the Lord. It is the posture of a woman whose confidence is not in the structure but in the One who designed it.</div>
+        </div>
+      </div>
+      <div class="contrast-footer">
+        <span class="contrast-ref">Eph. 5:22 &bull; 1 Pet. 3:1</span>
+        <span class="contrast-verse">"Likewise, ye wives, be in subjection to your own husbands; that, if any obey not the word, they also may without the word be won by the conversation of the wives."</span>
+      </div>
+    </div>
+
+    <div class="contrast-item">
+      <div class="contrast-header">
+        <div class="contrast-col">
+          <div class="contrast-col-label culture">Culture says</div>
+          <div class="contrast-col-text">Teach your children tolerance, self-expression, and emotional safety. Doctrine divides. Just let them find their own way.</div>
+        </div>
+        <div class="contrast-col scripture-side">
+          <div class="contrast-col-label scripture">Scripture commands</div>
+          <div class="contrast-col-text">Write these commandments on your children's hearts. When you sit, when you walk, when you lie down, when you rise. Not on Sunday. Constantly.</div>
+        </div>
+      </div>
+      <div class="contrast-footer">
+        <span class="contrast-ref">Deut. 6:6–7</span>
+        <span class="contrast-verse">"And these words, which I command thee this day, shall be in thine heart: And thou shalt teach them diligently unto thy children, and shalt talk of them when thou sittest in thine house."</span>
+      </div>
+    </div>
+
+    <div class="contrast-item">
+      <div class="contrast-header">
+        <div class="contrast-col">
+          <div class="contrast-col-label culture">Culture says</div>
+          <div class="contrast-col-text">A capable woman builds a career and keeps the household as a secondary project. Her ambition belongs to her, not to the home.</div>
+        </div>
+        <div class="contrast-col scripture-side">
+          <div class="contrast-col-label scripture">Scripture commands</div>
+          <div class="contrast-col-text">She considers a field and buys it. She girds her loins with strength. Her household is not a limitation — it is her domain and her work is not small.</div>
+        </div>
+      </div>
+      <div class="contrast-footer">
+        <span class="contrast-ref">Prov. 31:16–17, 27</span>
+        <span class="contrast-verse">"She looketh well to the ways of her household, and eateth not the bread of idleness."</span>
+      </div>
+    </div>
+
+    <div class="contrast-item">
+      <div class="contrast-header">
+        <div class="contrast-col">
+          <div class="contrast-col-label culture">Culture says</div>
+          <div class="contrast-col-text">Husbands love their wives by providing income and not interfering. Love is transactional. Keep score.</div>
+        </div>
+        <div class="contrast-col scripture-side">
+          <div class="contrast-col-label scripture">Scripture commands</div>
+          <div class="contrast-col-text">Love your wives as Christ loved the church — which means self-annihilation before self-preservation. No keeping score. No reserving yourself.</div>
+        </div>
+      </div>
+      <div class="contrast-footer">
+        <span class="contrast-ref">Eph. 5:25 &bull; Col. 3:19</span>
+        <span class="contrast-verse">"Husbands, love your wives, and be not bitter against them."</span>
+      </div>
+    </div>
+
+    <div class="contrast-item">
+      <div class="contrast-header">
+        <div class="contrast-col">
+          <div class="contrast-col-label culture">Culture says</div>
+          <div class="contrast-col-text">Children obey when obedience is reasonable to them. Enforce only what you can explain on their terms. Their compliance is negotiated, not expected.</div>
+        </div>
+        <div class="contrast-col scripture-side">
+          <div class="contrast-col-label scripture">Scripture commands</div>
+          <div class="contrast-col-text">Children, obey your parents in all things — not selectively, not when it makes sense to them. Fathers, do not provoke. But the obedience is not conditional.</div>
+        </div>
+      </div>
+      <div class="contrast-footer">
+        <span class="contrast-ref">Col. 3:20–21</span>
+        <span class="contrast-verse">"Children, obey your parents in all things: for this is well pleasing unto the Lord. Fathers, provoke not your children to anger, lest they be discouraged."</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Pull Quote -->
+  <div class="pull-quote">
+    <blockquote>
+      &ldquo;Your household is either commanded or it is improvised.<br>There is no third option.&rdquo;
+    </blockquote>
+    <cite>Dead Hidden</cite>
+  </div>
+
+  <hr class="divider">
+
+  <!-- Christie pointer -->
+  <div class="christie-block">
+    <div class="eyebrow">Biblical Womanhood</div>
+    <h3>Every wife wondering if it's real — Christie's work is the answer.</h3>
+    <p>
+      Biblical womanhood is not a consolation prize. It is not deference disguised as doctrine. Christie's work is for women who are done with the softened version — the one that makes submission palatable by redefining it out of existence. The real thing is not comfortable. It is also not small.
+    </p>
+    <a
+      href="https://deadhidden.org/biblical-woman"
+      class="christie-link"
+      id="christie-cta-btn"
+    >Christie&rsquo;s work &rarr;</a>
+  </div>
+
+  <hr class="divider">
+
+  <!-- Email Capture -->
+  <div class="email-section" id="email-section">
+    <div class="section-label">Stay in the fight</div>
+    <h2>Get the material that goes deeper.</h2>
+    <p>
+      New resources, study notes, and field tools — when they're ready, not on a schedule.
+      No filler. You can leave whenever.
+    </p>
+    <form id="household-email-form" novalidate>
+      <input type="hidden" id="utm_source" name="utm_source" value="">
+      <input type="hidden" id="utm_medium" name="utm_medium" value="">
+      <input type="hidden" id="utm_campaign" name="utm_campaign" value="">
+      <input type="hidden" id="utm_content" name="utm_content" value="">
+      <div class="email-row">
+        <input
+          type="email"
+          id="household-email"
+          placeholder="Your email address"
+          autocomplete="email"
+          required
+        >
+        <button type="submit" id="household-submit">Join &rarr;</button>
+      </div>
+    </form>
+    <div class="email-success" id="email-success">You're in. Watch your inbox.</div>
+    <div class="email-error" id="email-error"></div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- Field Manual CTA -->
+  <div class="manual-cta">
+    <div class="eyebrow">Household Order Bundle</div>
+    <h2>Both manuals. One household.<br>No softening.</h2>
+    <p>
+      The Biblical Man Field Manual and the Biblical Woman Field Manual together.
+      Thirteen chapters each. Verse-by-verse. Not complementarian theory &mdash;
+      what Scripture actually says and what it demands, for both of you.
+    </p>
+    <a
+      href="/checkout?slug=household-order-bundle&utm_content=household"
+      class="manual-btn"
+      id="manual-cta-btn"
+    >Get the Bundle &mdash; $127</a>
+    <span class="manual-price-note">One-time. No subscription. Both manuals, all bonuses.</span>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <p>
+    <a href="https://deadhidden.org">Dead Hidden</a> &nbsp;|&nbsp;
+    Questions: <a href="mailto:support@deadhidden.org">support@deadhidden.org</a>
+  </p>
+</footer>
+
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1648664066389309');
+fbq('track', 'PageView');
+fbq('track', 'ViewContent', {
+  content_name: 'household_grid',
+  content_category: 'narrative_landing'
+});
+</script>
+<noscript>
+  <img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1648664066389309&ev=PageView&noscript=1"/>
+</noscript>
+
+<!-- UTM capture + email form handler -->
+<script>
+(function() {
+  // Capture UTM params from URL on mount
+  var params = new URLSearchParams(window.location.search);
+  var utmSource   = params.get('utm_source')   || '';
+  var utmMedium   = params.get('utm_medium')   || '';
+  var utmCampaign = params.get('utm_campaign') || '';
+  var utmContent  = params.get('utm_content')  || '';
+
+  document.getElementById('utm_source').value   = utmSource;
+  document.getElementById('utm_medium').value   = utmMedium;
+  document.getElementById('utm_campaign').value = utmCampaign;
+  document.getElementById('utm_content').value  = utmContent;
+
+  // Build source string for DB (consistent with /os signup conventions)
+  var source = 'os_household';
+  if (utmSource) source = 'os_household|' + utmSource;
+
+  // Append UTM params to CTA buttons if present
+  if (utmSource || utmMedium || utmCampaign || utmContent) {
+    var manualBtn = document.getElementById('manual-cta-btn');
+    var ctaUrl = new URL(manualBtn.getAttribute('href'), window.location.origin);
+    if (utmSource)   ctaUrl.searchParams.set('utm_source', utmSource);
+    if (utmMedium)   ctaUrl.searchParams.set('utm_medium', utmMedium);
+    if (utmCampaign) ctaUrl.searchParams.set('utm_campaign', utmCampaign);
+    // utm_content is already 'household' in the base href
+    manualBtn.setAttribute('href', ctaUrl.pathname + ctaUrl.search);
+
+    var christieBtn = document.getElementById('christie-cta-btn');
+    if (christieBtn) {
+      var christieUrl = new URL(christieBtn.getAttribute('href'));
+      if (utmSource)   christieUrl.searchParams.set('utm_source', utmSource);
+      if (utmMedium)   christieUrl.searchParams.set('utm_medium', utmMedium);
+      if (utmCampaign) christieUrl.searchParams.set('utm_campaign', utmCampaign);
+      christieUrl.searchParams.set('utm_content', 'household');
+      christieBtn.setAttribute('href', christieUrl.href);
+    }
+  }
+
+  // Email form
+  var form      = document.getElementById('household-email-form');
+  var submitBtn = document.getElementById('household-submit');
+  var errorEl   = document.getElementById('email-error');
+  var successEl = document.getElementById('email-success');
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    var email = document.getElementById('household-email').value.trim();
+    if (!email) return;
+
+    errorEl.style.display = 'none';
+    errorEl.textContent = '';
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Joining...';
+
+    try {
+      var resp = await fetch('/api/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email, source: source })
+      });
+
+      var data = await resp.json();
+
+      if (resp.ok) {
+        if (typeof fbq === 'function') fbq('track', 'Lead');
+        form.style.display = 'none';
+        successEl.style.display = 'block';
+      } else if (resp.status === 409) {
+        form.style.display = 'none';
+        successEl.textContent = "You're already on the list.";
+        successEl.style.display = 'block';
+      } else {
+        errorEl.textContent = data.message || 'Something went wrong. Please try again.';
+        errorEl.style.display = 'block';
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Join \u2192';
+      }
+    } catch (err) {
+      errorEl.textContent = 'Connection failed. Check your connection and try again.';
+      errorEl.style.display = 'block';
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Join \u2192';
+    }
+  });
+})();
+</script>
+
+</body>
+</html>

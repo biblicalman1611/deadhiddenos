@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FaithWall — Options</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #c9a227;
+      --gold-dim: #8a6b10;
+      --bg: #0a0a0a;
+      --surface: #111111;
+      --surface2: #161616;
+      --border: #1e1e1e;
+      --text: #f0ebe0;
+      --text-dim: #8a7a60;
+      --text-muted: #4a3e28;
+      --danger: #c0392b;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* Layout */
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 24px 60px;
+    }
+
+    /* Header */
+    .page-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 28px 0 24px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 32px;
+    }
+
+    .logo-mark {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, #c9a227, #6b4e0a);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      flex-shrink: 0;
+    }
+
+    .page-header h1 {
+      font-size: 22px;
+      font-weight: 700;
+      color: #e8d48a;
+    }
+
+    .page-header p {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 3px;
+    }
+
+    /* Section */
+    .section {
+      margin-bottom: 36px;
+    }
+
+    .section-header {
+      margin-bottom: 16px;
+    }
+
+    .section-header h2 {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--text-muted);
+    }
+
+    .section-header p {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* Card */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .card-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .card-row:last-child {
+      border-bottom: none;
+    }
+
+    .row-info {}
+    .row-title {
+      font-size: 14px;
+      color: var(--text);
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .row-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 3px;
+    }
+
+    /* Toggle */
+    .toggle {
+      position: relative;
+      width: 42px;
+      height: 24px;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .toggle input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+      position: absolute;
+    }
+
+    .toggle-track {
+      position: absolute;
+      inset: 0;
+      background: #222;
+      border-radius: 24px;
+      transition: background 0.2s;
+    }
+
+    .toggle-thumb {
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      top: 3px;
+      left: 3px;
+      background: #555;
+      border-radius: 50%;
+      transition: transform 0.2s, background 0.2s;
+    }
+
+    .toggle input:checked ~ .toggle-track { background: #3d2e00; }
+    .toggle input:checked ~ .toggle-thumb { transform: translateX(18px); background: var(--gold); }
+
+    /* Input / Textarea */
+    .field-group {
+      padding: 16px 18px;
+    }
+
+    .field-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    textarea, input[type="text"], input[type="password"], input[type="time"] {
+      width: 100%;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      padding: 10px 12px;
+      font-family: inherit;
+      font-size: 13px;
+      outline: none;
+      transition: border-color 0.15s;
+      resize: vertical;
+    }
+
+    textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[type="time"]:focus {
+      border-color: var(--gold-dim);
+    }
+
+    textarea {
+      min-height: 90px;
+    }
+
+    .input-hint {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    /* Schedule grid */
+    .schedule-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      padding: 16px 18px;
+    }
+
+    .time-field {}
+    .time-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    /* Passcode */
+    .passcode-setup {
+      padding: 16px 18px;
+    }
+
+    .passcode-row {
+      display: flex;
+      gap: 10px;
+      align-items: flex-end;
+    }
+
+    .passcode-row input {
+      flex: 1;
+    }
+
+    .btn {
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: opacity 0.15s;
+      white-space: nowrap;
+    }
+
+    .btn:hover { opacity: 0.85; }
+
+    .btn-gold {
+      background: linear-gradient(135deg, var(--gold), var(--gold-dim));
+      color: #0a0800;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+    }
+
+    .btn-danger {
+      background: rgba(192, 57, 43, 0.15);
+      border: 1px solid rgba(192, 57, 43, 0.3);
+      color: #e74c3c;
+    }
+
+    /* Save bar */
+    .save-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #0d0d0d;
+      border-top: 1px solid var(--border);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 100;
+    }
+
+    .save-status {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .save-status.saved {
+      color: var(--gold);
+    }
+
+    /* Alert */
+    .alert {
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-size: 13px;
+      margin: 0 18px 14px;
+      display: none;
+    }
+
+    .alert.error {
+      background: rgba(192, 57, 43, 0.12);
+      border: 1px solid rgba(192, 57, 43, 0.3);
+      color: #e74c3c;
+      display: block;
+    }
+
+    .alert.success {
+      background: rgba(201, 162, 39, 0.1);
+      border: 1px solid rgba(201, 162, 39, 0.25);
+      color: var(--gold);
+      display: block;
+    }
+
+    /* Passcode overlay */
+    #passcodeOverlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #passcodeOverlay.visible {
+      display: flex;
+    }
+
+    .passcode-dialog {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px 28px;
+      width: 320px;
+      text-align: center;
+    }
+
+    .passcode-dialog h2 {
+      font-size: 18px;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+
+    .passcode-dialog p {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    .passcode-dialog input {
+      margin-bottom: 12px;
+      text-align: center;
+      letter-spacing: 4px;
+      font-size: 20px;
+    }
+
+    .passcode-dialog .btn {
+      width: 100%;
+      margin-bottom: 8px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Passcode overlay -->
+<div id="passcodeOverlay">
+  <div class="passcode-dialog">
+    <h2>✝ FaithWall</h2>
+    <p>Enter your passcode to access settings</p>
+    <input type="password" id="overlayPasscode" maxlength="20" placeholder="••••••••">
+    <div id="overlayError" class="alert"></div>
+    <button class="btn btn-gold" id="overlaySubmit">Unlock</button>
+  </div>
+</div>
+
+<div class="page" id="mainContent" style="display:none">
+
+  <div class="page-header">
+    <div class="logo-mark">✝</div>
+    <div>
+      <h1>FaithWall Options</h1>
+      <p>Guard your eyes. Renew your mind. — Phil 4:8</p>
+    </div>
+  </div>
+
+  <!-- CATEGORY TOGGLES -->
+  <div class="section">
+    <div class="section-header">
+      <h2>Blocked Categories</h2>
+      <p>Toggle which types of content FaithWall blocks</p>
+    </div>
+    <div class="card">
+      <div class="card-row">
+        <div class="row-info">
+          <div class="row-title">🔞 Adult Content</div>
+          <div class="row-sub">Pornography, webcam sites, adult platforms</div>
+        </div>
+        <label class="toggle">
+          <input type="checkbox" id="opt_porn">
+          <span class="toggle-track"></span>
+          <span class="toggle-thumb"></span>
+        </label>
+      </div>
+      <div class="card-row">
+        <div class="row-info">
+          <div class="row-title">🎲 Gambling</div>
+          <div class="row-sub">Sports betting, online casinos, poker sites</div>
+        </div>
+        <label class="toggle">
+          <input type="checkbox" id="opt_gambling">
+          <span class="toggle-track"></span>
+          <span class="toggle-thumb"></span>
+        </label>
+      </div>
+      <div class="card-row">
+        <div class="row-info">
+          <div class="row-title">📱 Social Media</div>
+          <div class="row-sub">Facebook, Instagram, TikTok, Twitter/X, Reddit, YouTube</div>
+        </div>
+        <label class="toggle">
+          <input type="checkbox" id="opt_social">
+          <span class="toggle-track"></span>
+          <span class="toggle-thumb"></span>
+        </label>
+      </div>
+      <div class="card-row">
+        <div class="row-info">
+          <div class="row-title">📰 News Doomscroll</div>
+          <div class="row-sub">CNN, Fox News, NYT, WaPo, and other news sites</div>
+        </div>
+        <label class="toggle">
+          <input type="checkbox" id="opt_news">
+          <span class="toggle-track"></span>
+          <span class="toggle-thumb"></span>
+        </label>
+      </div>
+      <div class="card-row">
+        <div class="row-info">
+          <div class="row-title">🔮 Occult / Horoscope</div>
+          <div class="row-sub">Astrology, tarot, psychics, horoscope sites</div>
+        </div>
+        <label class="toggle">
+          <input type="checkbox" id="opt_occult">
+          <span class="toggle-track"></span>
+          <span class="toggle-thumb"></span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- CUSTOM BLOCKLIST -->
+  <div class="section">
+    <div class="section-header">
+      <h2>Custom Block List</h2>
+    </div>
+    <div class="card">
+      <div class="field-group">
+        <div class="field-label">One domain per line</div>
+        <textarea id="customDomains" placeholder="example.com&#10;another-site.net"></textarea>
+        <div class="input-hint">Enter just the domain — no https://, no paths, no wildcards needed.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCHEDULE -->
+  <div class="section">
+    <div class="section-header">
+      <h2>Schedule</h2>
+      <p>Automatically enable blocking only during set hours</p>
+    </div>
+    <div class="card">
+      <div class="card-row">
+        <div class="row-info">
+          <div class="row-title">Enable schedule</div>
+          <div class="row-sub">Blocking turns on/off automatically by time</div>
+        </div>
+        <label class="toggle">
+          <input type="checkbox" id="opt_schedule">
+          <span class="toggle-track"></span>
+          <span class="toggle-thumb"></span>
+        </label>
+      </div>
+      <div id="scheduleFields" style="display:none">
+        <div class="schedule-grid">
+          <div class="time-field">
+            <div class="time-label">Blocking starts</div>
+            <input type="time" id="scheduleStart" value="06:00">
+          </div>
+          <div class="time-field">
+            <div class="time-label">Blocking ends</div>
+            <input type="time" id="scheduleEnd" value="21:00">
+          </div>
+        </div>
+        <div class="input-hint" style="padding: 0 18px 14px">Social media will be blocked from start to end time daily. Outside these hours, it remains off.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PASSCODE -->
+  <div class="section">
+    <div class="section-header">
+      <h2>Passcode Protection</h2>
+      <p>Require a passcode to access these settings</p>
+    </div>
+    <div class="card">
+      <div class="card-row">
+        <div class="row-info">
+          <div class="row-title">Passcode enabled</div>
+          <div class="row-sub">Settings locked behind a code — for family installs</div>
+        </div>
+        <label class="toggle">
+          <input type="checkbox" id="opt_passcode_enabled">
+          <span class="toggle-track"></span>
+          <span class="toggle-thumb"></span>
+        </label>
+      </div>
+      <div id="passcodeSetup" style="display:none">
+        <div id="passcodeAlert"></div>
+        <div class="passcode-setup">
+          <div class="field-label" style="margin-bottom:8px">Set new passcode</div>
+          <div class="passcode-row">
+            <input type="password" id="newPasscode" placeholder="Enter passcode" maxlength="20">
+            <input type="password" id="confirmPasscode" placeholder="Confirm" maxlength="20" style="margin-top:0">
+            <button class="btn btn-gold" id="savePasscodeBtn">Set</button>
+          </div>
+          <div class="input-hint" style="margin-top:8px">Use something you'll remember. There's no recovery — you'd need to reinstall the extension.</div>
+          <div style="margin-top:12px">
+            <button class="btn btn-danger" id="clearPasscodeBtn">Remove Passcode</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NEW TAB -->
+  <div class="section">
+    <div class="section-header">
+      <h2>New Tab</h2>
+    </div>
+    <div class="card">
+      <div class="card-row">
+        <div class="row-info">
+          <div class="row-title">Show Scripture on new tab</div>
+          <div class="row-sub">Replaces new tab with a daily KJV verse</div>
+        </div>
+        <label class="toggle">
+          <input type="checkbox" id="opt_newtab">
+          <span class="toggle-track"></span>
+          <span class="toggle-thumb"></span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Save bar -->
+<div class="save-bar" id="saveBar" style="display:none">
+  <span class="save-status" id="saveStatus">Unsaved changes</span>
+  <div style="display:flex;gap:10px">
+    <button class="btn btn-outline" id="discardBtn">Discard</button>
+    <button class="btn btn-gold" id="saveBtn">Save Settings</button>
+  </div>
+</div>
+
+<script src="options.js"></script>
+</body>
+</html>

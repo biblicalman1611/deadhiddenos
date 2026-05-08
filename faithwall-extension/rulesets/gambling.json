@@ -1,0 +1,22 @@
+[
+  { "id": 101, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||draftkings.com^",      "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 102, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||fanduel.com^",         "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 103, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||betmgm.com^",          "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 104, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||caesars.com/sportsbook", "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 105, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||pointsbet.com^",       "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 106, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||barstoolsportsbook.com^", "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 107, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||pokerstars.com^",      "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 108, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||888casino.com^",       "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 109, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||bet365.com^",          "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 110, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||williamhill.com^",     "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 111, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||bovada.lv^",           "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 112, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||mybookie.ag^",         "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 113, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||betonline.ag^",        "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 114, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||sportsbetting.ag^",    "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 115, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||xbet.com^",            "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 116, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||betway.com^",          "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 117, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||ladbrokes.com^",       "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 118, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||paddypower.com^",      "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 119, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||unibet.com^",          "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 120, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||goldenpalace.com^",    "resourceTypes": ["main_frame","sub_frame"] } }
+]

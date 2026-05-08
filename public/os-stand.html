@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tell Us What Changed — Dead Hidden</title>
+  <meta name="robots" content="noindex">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #111;
+      --bg2: #1a1a1a;
+      --bg3: #222;
+      --border: rgba(139,37,0,0.2);
+      --border-focus: #8b2500;
+      --text: #f5f0e8;
+      --text-dim: rgba(245,240,232,0.55);
+      --text-faint: rgba(245,240,232,0.25);
+      --accent: #8b2500;
+      --accent-hover: #a02c00;
+      --label: #a0522d;
+    }
+
+    html { background: var(--bg); }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Georgia', serif;
+      min-height: 100vh;
+    }
+
+    /* ---- Header bar ---- */
+    .site-header {
+      border-bottom: 1px solid var(--border);
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+    }
+    .brand {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    /* ---- Main layout ---- */
+    .container {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 64px 24px 96px;
+    }
+
+    /* ---- Hero ---- */
+    .eyebrow {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--label);
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      margin-bottom: 24px;
+    }
+
+    .subhead {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: var(--text-dim);
+      margin-bottom: 40px;
+      max-width: 520px;
+    }
+
+    .subhead strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* ---- Rules block ---- */
+    .rules {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      padding: 24px 28px;
+      margin-bottom: 44px;
+    }
+    .rules-title {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--label);
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+    .rules ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .rules li {
+      font-size: 0.92rem;
+      color: var(--text-dim);
+      line-height: 1.5;
+      padding-left: 20px;
+      position: relative;
+    }
+    .rules li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    /* ---- Form ---- */
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    label {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--label);
+      font-weight: 700;
+    }
+    label .optional {
+      font-weight: 400;
+      color: var(--text-faint);
+      text-transform: none;
+      letter-spacing: 0;
+      font-size: 0.78rem;
+    }
+
+    input[type="text"],
+    textarea {
+      width: 100%;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: 'Georgia', serif;
+      font-size: 1rem;
+      line-height: 1.6;
+      padding: 14px 18px;
+      outline: none;
+      transition: border-color 0.15s;
+      -webkit-appearance: none;
+    }
+    input[type="text"]::placeholder,
+    textarea::placeholder {
+      color: var(--text-faint);
+    }
+    input[type="text"]:focus,
+    textarea:focus {
+      border-color: var(--border-focus);
+    }
+    textarea {
+      resize: vertical;
+      min-height: 130px;
+    }
+
+    /* ---- Checkbox ---- */
+    .checkbox-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      cursor: pointer;
+      padding: 16px 20px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      transition: border-color 0.15s;
+    }
+    .checkbox-row:hover {
+      border-color: rgba(139,37,0,0.4);
+    }
+    .checkbox-row input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      min-width: 18px;
+      margin-top: 2px;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+    .checkbox-text {
+      font-size: 0.92rem;
+      color: var(--text-dim);
+      line-height: 1.55;
+    }
+    .checkbox-text strong {
+      color: var(--text);
+      display: block;
+      margin-bottom: 2px;
+      font-family: 'Arial', sans-serif;
+      font-size: 0.82rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* ---- Submit button ---- */
+    .submit-wrap {
+      padding-top: 8px;
+    }
+    button[type="submit"] {
+      background: var(--accent);
+      color: var(--text);
+      border: none;
+      padding: 16px 40px;
+      font-family: 'Arial', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s;
+      width: 100%;
+    }
+    button[type="submit"]:hover:not(:disabled) {
+      background: var(--accent-hover);
+    }
+    button[type="submit"]:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    /* ---- States ---- */
+    .form-error {
+      display: none;
+      background: rgba(185,28,28,0.1);
+      border: 1px solid rgba(185,28,28,0.3);
+      color: #fca5a5;
+      padding: 14px 18px;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+    .form-error.visible { display: block; }
+
+    .success-state {
+      display: none;
+      text-align: center;
+      padding: 60px 0;
+    }
+    .success-state.visible { display: block; }
+    .success-icon {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+    .success-state h2 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+    .success-state p {
+      color: var(--text-dim);
+      font-size: 1rem;
+      line-height: 1.7;
+      max-width: 420px;
+      margin: 0 auto;
+    }
+
+    /* ---- Footer ---- */
+    .site-footer {
+      margin-top: 80px;
+      padding: 32px 24px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+    .site-footer p {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.75rem;
+      color: var(--text-faint);
+      letter-spacing: 1px;
+    }
+    .site-footer a {
+      color: rgba(245,240,232,0.35);
+      text-decoration: none;
+    }
+    .site-footer a:hover { color: var(--text-dim); }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="https://deadhidden.org" class="brand">Dead Hidden</a>
+</header>
+
+<main class="container">
+
+  <!-- Hero -->
+  <div class="eyebrow">One week in</div>
+  <h1>Tell us what changed.<br>No fluff. No fake humility.</h1>
+  <p class="subhead">
+    You've had a week with what you bought. Something shifted or it didn't.
+    <strong>Either way — say it straight.</strong>
+    No performing, no testimonial theater. Just the honest version.
+  </p>
+
+  <!-- Rules -->
+  <div class="rules">
+    <div class="rules-title">What we're asking for</div>
+    <ul>
+      <li>Your name (or initials — we won't guess)</li>
+      <li>How long you've been running this material</li>
+      <li>The one thing that actually hit</li>
+      <li>Whether we can put your words in front of other people</li>
+    </ul>
+  </div>
+
+  <!-- Form -->
+  <div id="form-wrap">
+    <div class="form-error" id="form-error"></div>
+    <form id="testimony-form" novalidate>
+      <div class="field">
+        <label for="name">Name or initials</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          placeholder="e.g. Marcus T. or M.T. — your call"
+          maxlength="120"
+          required
+        >
+      </div>
+
+      <div class="field">
+        <label for="running_since">
+          How long you've been running it
+          <span class="optional">(optional)</span>
+        </label>
+        <input
+          type="text"
+          id="running_since"
+          name="running_since"
+          placeholder="e.g. one week, since December, just started"
+          maxlength="120"
+        >
+      </div>
+
+      <div class="field">
+        <label for="what_hit">The one thing that hit</label>
+        <textarea
+          id="what_hit"
+          name="what_hit"
+          placeholder="One sentence or ten. Don't edit yourself into blandness."
+          maxlength="2000"
+          required
+        ></textarea>
+      </div>
+
+      <label class="checkbox-row" for="publish_allowed">
+        <input type="checkbox" id="publish_allowed" name="publish_allowed">
+        <div class="checkbox-text">
+          <strong>Permission to publish</strong>
+          You're okay with us putting your words (name + what hit) on the Dead Hidden site as social proof. We'll never add words you didn't write.
+        </div>
+      </label>
+
+      <div class="submit-wrap">
+        <button type="submit" id="submit-btn">Send it &rarr;</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Success state -->
+  <div class="success-state" id="success-state">
+    <div class="success-icon">&#9654;</div>
+    <h2>Received.</h2>
+    <p>
+      That's exactly what this is for. It gets read, not filed.
+      If you gave permission to publish and we use it, you'll see it on the site — unchanged.
+    </p>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <p>
+    <a href="https://deadhidden.org">Dead Hidden</a> &nbsp;|&nbsp;
+    Questions: <a href="mailto:support@deadhidden.org">support@deadhidden.org</a>
+  </p>
+</footer>
+
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '{{META_PIXEL_ID}}');
+fbq('track', 'PageView');
+</script>
+
+<script>
+(function() {
+  const form = document.getElementById('testimony-form');
+  const submitBtn = document.getElementById('submit-btn');
+  const formError = document.getElementById('form-error');
+  const formWrap = document.getElementById('form-wrap');
+  const successState = document.getElementById('success-state');
+
+  function showError(msg) {
+    formError.textContent = msg;
+    formError.classList.add('visible');
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Send it →';
+  }
+
+  function clearError() {
+    formError.textContent = '';
+    formError.classList.remove('visible');
+  }
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    clearError();
+
+    const name = document.getElementById('name').value.trim();
+    const runningSince = document.getElementById('running_since').value.trim();
+    const whatHit = document.getElementById('what_hit').value.trim();
+    const publishAllowed = document.getElementById('publish_allowed').checked;
+
+    if (!name) {
+      showError('Name or initials required — even two letters is fine.');
+      document.getElementById('name').focus();
+      return;
+    }
+    if (!whatHit) {
+      showError('Tell us the one thing that hit. That\'s the whole point of this form.');
+      document.getElementById('what_hit').focus();
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+
+    try {
+      const res = await fetch('/api/testimony', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, running_since: runningSince, what_hit: whatHit, publish_allowed: publishAllowed })
+      });
+
+      const data = await res.json();
+
+      if (res.ok && data.success) {
+        // Fire Meta Pixel Lead event
+        if (typeof fbq === 'function') {
+          fbq('track', 'Lead', { content_name: 'testimony' });
+        }
+
+        formWrap.style.display = 'none';
+        successState.classList.add('visible');
+      } else {
+        showError(data.message || 'Something went wrong. Try again.');
+      }
+    } catch (err) {
+      showError('Connection error. Check your internet and try again.');
+    }
+  });
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+FAITHWALL PRIVACY POLICY
+Last updated: May 7, 2026
+
+THE SHORT VERSION
+FaithWall runs entirely on your device. No browsing data is ever sent anywhere.
+We don't know what you block, what you visit, or when you use it. There is
+nothing to sell or share because there is nothing to collect.
+
+HOW FAITHWALL WORKS
+FaithWall uses your browser's built-in content blocking system (Chrome's
+declarativeNetRequest API on desktop; equivalent APIs on iOS). The blocklists
+are bundled directly into the extension and app — they live on your device,
+not on a server we control.
+
+When you visit a site, your browser checks the local blocklist and blocks or
+allows the request. That decision happens entirely on your device. No request
+information, no domain lookups, no traffic patterns leave your device.
+
+WHAT WE COLLECT
+From the extension and iOS app: nothing. No analytics, no crash reports, no
+telemetry, no third-party SDKs.
+
+From this website (faithwall.deadhidden.org): if you sign up for founding
+access, we store your email address. That's it.
+
+EMAIL SIGNUPS
+If you submit your email address through our founding access waitlist, we store
+it in our database and use it solely to communicate about FaithWall — release
+updates, access notifications, and occasional product news. We don't sell it,
+rent it, or share it with any third party.
+
+To be removed, email adam@deadhidden.org with your address.
+
+CHILDREN'S PRIVACY
+FaithWall is designed for households, including households with children. We do
+not collect any personal data from minors. The extension and app collect no
+data at all. The only data path is the optional email signup on this website,
+which is intended for adult household heads.
+
+THIRD-PARTY SERVICES
+The extension and app contain no third-party analytics, advertising SDKs, or
+tracking pixels.
+
+DATA RETENTION
+Email addresses submitted for founding access are retained until you request
+deletion. We don't retain browsing data because we never collect it.
+
+CONTACT
+Any privacy question or data deletion request:
+adam@deadhidden.org
+
+https://faithwall.deadhidden.org/privacy

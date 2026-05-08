@@ -1,0 +1,22 @@
+[
+  { "id": 301, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||cnn.com^",             "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 302, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||foxnews.com^",         "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 303, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||msnbc.com^",           "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 304, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||nytimes.com^",         "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 305, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||washingtonpost.com^",  "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 306, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||huffpost.com^",        "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 307, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||buzzfeed.com^",        "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 308, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||dailymail.co.uk^",     "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 309, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||theguardian.com^",     "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 310, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||nbcnews.com^",         "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 311, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||cbsnews.com^",         "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 312, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||abcnews.go.com^",      "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 313, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||usatoday.com^",        "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 314, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||politico.com^",        "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 315, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||thehill.com^",         "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 316, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||apnews.com^",          "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 317, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||reuters.com^",         "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 318, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||axios.com^",           "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 319, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||vox.com^",             "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 320, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||slate.com^",           "resourceTypes": ["main_frame","sub_frame"] } }
+]

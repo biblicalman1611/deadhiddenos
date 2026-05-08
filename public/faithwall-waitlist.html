@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FaithWall — iOS Coming. Get Early Access.</title>
+  <meta name="description" content="Chrome extension live. Web app live. iOS in App Store review. Get on the waitlist and be first through the door when it drops.">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://faithwall.deadhidden.org">
+  <meta property="og:title" content="FaithWall — Scripture-First App Blocker">
+  <meta property="og:description" content="Chrome extension live. iOS in App Store review. Replace what opens every new tab with Scripture. Get early access.">
+  <meta property="og:image" content="https://pub-629428d185ca4960a0a73c850d32294b.r2.dev/company_91403/images/ba0ee447-5f3b-4ddf-ab4e-d0061785c029.png">
+  <meta property="og:image:width" content="1792">
+  <meta property="og:image:height" content="1024">
+  <meta property="og:site_name" content="Dead Hidden Ministries">
+
+  <!-- Twitter / X Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@biblicalman">
+  <meta name="twitter:title" content="FaithWall — Scripture-First App Blocker">
+  <meta name="twitter:description" content="Chrome extension live. iOS in App Store review. Replace what opens every new tab with Scripture. Get early access.">
+  <meta name="twitter:image" content="https://pub-629428d185ca4960a0a73c850d32294b.r2.dev/company_91403/images/ba0ee447-5f3b-4ddf-ab4e-d0061785c029.png">
+
+  <!-- dataLayer init (before GTM) -->
+  <script>window.dataLayer = window.dataLayer || [];</script>
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-XXXXXXX');</script>
+  <!-- End Google Tag Manager -->
+
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1648664066389309');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1648664066389309&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:           #111;
+      --bg2:          #1a1a1a;
+      --bg3:          #222;
+      --border:       rgba(139,37,0,0.2);
+      --border-bright: rgba(139,37,0,0.35);
+      --text:         #f5f0e8;
+      --text-dim:     rgba(245,240,232,0.55);
+      --text-faint:   rgba(245,240,232,0.25);
+      --text-ghost:   rgba(245,240,232,0.12);
+      --accent:       #8b2500;
+      --accent-hover: #a02c00;
+      --label:        #a0522d;
+    }
+
+    html { background: var(--bg); }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { text-decoration: none; }
+
+    /* ---- HEADER ---- */
+    .site-header {
+      border-bottom: 1px solid var(--border);
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+    }
+
+    .brand {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    /* ---- MAIN CONTAINER ---- */
+    .container {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 72px 24px 96px;
+    }
+
+    /* ---- EYEBROW ---- */
+    .eyebrow {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--label);
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    /* ---- STATUS BADGE ---- */
+    .status-row {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin-bottom: 36px;
+      flex-wrap: wrap;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 2px;
+    }
+
+    .status-live {
+      background: rgba(0,120,0,0.12);
+      border: 1px solid rgba(0,180,0,0.25);
+      color: #5de05d;
+    }
+
+    .status-pending {
+      background: rgba(160,82,45,0.08);
+      border: 1px solid rgba(160,82,45,0.3);
+      color: var(--label);
+    }
+
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+    }
+
+    .status-live .status-dot {
+      background: #5de05d;
+      box-shadow: 0 0 6px rgba(93,224,93,0.6);
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+
+    .status-pending .status-dot { background: var(--label); }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    /* ---- HEADLINE ---- */
+    h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2rem, 6vw, 3.2rem);
+      font-weight: 700;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 24px;
+    }
+
+    h1 em {
+      font-style: normal;
+      color: var(--accent);
+    }
+
+    /* ---- POSITIONING LINE ---- */
+    .positioning {
+      font-size: 1.05rem;
+      color: var(--text-dim);
+      line-height: 1.7;
+      margin-bottom: 48px;
+      max-width: 520px;
+    }
+
+    /* ---- DIVIDER ---- */
+    .rule {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      margin: 44px 0;
+    }
+
+    /* ---- EARLY ACCESS BULLETS ---- */
+    .access-heading {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--label);
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .access-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 48px;
+    }
+
+    .access-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      font-size: 0.97rem;
+      color: var(--text-dim);
+      line-height: 1.55;
+    }
+
+    .access-list li::before {
+      content: '—';
+      color: var(--accent);
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .access-list li strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* ---- SCRIPTURE PULL ---- */
+    .scripture-block {
+      border-left: 2px solid var(--accent);
+      padding: 0 0 0 20px;
+      margin-bottom: 44px;
+    }
+
+    .scripture-text {
+      font-family: 'DM Sans', sans-serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--text-dim);
+      line-height: 1.7;
+      margin-bottom: 8px;
+    }
+
+    .scripture-ref {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--label);
+      font-weight: 600;
+    }
+
+    /* ---- EMAIL FORM ---- */
+    .form-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 10px;
+    }
+
+    .form-wrap input[type="email"] {
+      flex: 1;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.97rem;
+      padding: 14px 18px;
+      outline: none;
+      transition: border-color 0.2s;
+      min-width: 0;
+    }
+
+    .form-wrap input[type="email"]::placeholder {
+      color: var(--text-faint);
+    }
+
+    .form-wrap input[type="email"]:focus {
+      border-color: var(--accent);
+    }
+
+    .btn-submit {
+      background: var(--accent);
+      color: var(--text);
+      border: 1px solid transparent;
+      border-radius: 3px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 14px 28px;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+      white-space: nowrap;
+    }
+
+    .btn-submit:hover {
+      background: transparent;
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .btn-submit:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+
+    .form-note {
+      font-size: 0.78rem;
+      color: var(--text-faint);
+      margin-top: 4px;
+    }
+
+    .form-success {
+      display: none;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      color: #5de05d;
+      padding: 14px 0 2px;
+    }
+
+    .form-error {
+      display: none;
+      font-size: 0.88rem;
+      color: var(--label);
+      margin-top: 8px;
+    }
+
+    /* ---- CHROME EXTENSION CTA ---- */
+    .ext-cta {
+      margin-top: 40px;
+      padding: 20px 24px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .ext-cta-copy {
+      font-size: 0.92rem;
+      color: var(--text-dim);
+      line-height: 1.5;
+    }
+
+    .ext-cta-copy strong {
+      display: block;
+      color: var(--text);
+      font-weight: 600;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+
+    .btn-ext {
+      display: inline-block;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 10px 22px;
+      border: 1px solid var(--border-bright);
+      border-radius: 3px;
+      color: var(--text);
+      transition: background 0.2s, border-color 0.2s;
+      white-space: nowrap;
+    }
+
+    .btn-ext:hover {
+      background: rgba(139,37,0,0.12);
+      border-color: var(--accent);
+    }
+
+    /* ---- FOOTER ---- */
+    .site-footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-brand {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      font-weight: 700;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-links a {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--text-dim); }
+
+    /* ---- RESPONSIVE ---- */
+    @media (max-width: 600px) {
+      .container { padding: 48px 20px 72px; }
+
+      .form-row { flex-direction: column; }
+
+      .btn-submit { width: 100%; }
+
+      .ext-cta { flex-direction: column; align-items: flex-start; }
+
+      .site-footer { flex-direction: column; gap: 12px; }
+    }
+
+    @media (max-width: 400px) {
+      h1 { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <a href="/" class="brand">Dead Hidden</a>
+  </header>
+
+  <!-- MAIN -->
+  <main class="container">
+
+    <div class="eyebrow">FaithWall</div>
+
+    <!-- Status indicators -->
+    <div class="status-row">
+      <div class="status-pill status-live">
+        <span class="status-dot"></span>
+        Chrome Extension Live
+      </div>
+      <div class="status-pill status-live">
+        <span class="status-dot"></span>
+        Web App Live
+      </div>
+      <div class="status-pill status-pending">
+        <span class="status-dot"></span>
+        iOS — App Store Review
+      </div>
+    </div>
+
+    <h1>Your eyes land somewhere<br>before your day starts.<br>Make it <em>count.</em></h1>
+
+    <p class="positioning">
+      FaithWall is a Chrome extension, web app, and iOS app (pending App Store approval) that replaces the new tab — and every idle screen — with Scripture. For men and women who already drew the line and want the wall to hold it.
+    </p>
+
+    <div class="rule"></div>
+
+    <!-- Scripture -->
+    <div class="scripture-block">
+      <p class="scripture-text">"I will set no wicked thing before mine eyes."</p>
+      <div class="scripture-ref">Psalm 101:3 — KJV</div>
+    </div>
+
+    <!-- Early access bullets -->
+    <div class="access-heading">Early access gets you</div>
+    <ul class="access-list">
+      <li><strong>First notification when iOS drops</strong> — you hear before the public announcement.</li>
+      <li><strong>Founding member pricing</strong> — locked in before launch. One-time, not a subscription.</li>
+      <li><strong>Chrome extension now</strong> — install today, wall up before iOS is even approved.</li>
+      <li><strong>No algorithm. No feed.</strong> Just the Word, every time the tab opens.</li>
+    </ul>
+
+    <!-- Email form -->
+    <form class="form-wrap" id="waitlist-form" novalidate>
+      <div class="form-row">
+        <input type="email" id="waitlist-email" placeholder="Your email address" autocomplete="email" required>
+        <button type="submit" class="btn-submit" id="waitlist-btn">Notify me</button>
+      </div>
+      <div class="form-note">No spam. One email when iOS launches.</div>
+      <div class="form-success" id="waitlist-success">You're on the list. You'll hear first.</div>
+      <div class="form-error" id="waitlist-error"></div>
+    </form>
+
+    <!-- Chrome extension CTA -->
+    <div class="ext-cta">
+      <div class="ext-cta-copy">
+        <strong>Chrome Extension — Available Now</strong>
+        Scripture on every new tab. Install in 30 seconds.
+      </div>
+      <a href="https://chromewebstore.google.com/detail/faithwall" target="_blank" rel="noopener" class="btn-ext">
+        Add to Chrome &rarr;
+      </a>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-brand">Dead Hidden Ministries</div>
+    <div class="footer-links">
+      <a href="/privacy">Privacy</a>
+      <a href="/support">Support</a>
+      <a href="/">deadhidden.org</a>
+    </div>
+  </footer>
+
+  <!-- Waitlist form handler -->
+  <script>
+  (function() {
+    var form = document.getElementById('waitlist-form');
+    var emailInput = document.getElementById('waitlist-email');
+    var btn = document.getElementById('waitlist-btn');
+    var successEl = document.getElementById('waitlist-success');
+    var errorEl = document.getElementById('waitlist-error');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      var email = emailInput.value.trim();
+      if (!email || email.indexOf('@') === -1) {
+        errorEl.textContent = 'Valid email required.';
+        errorEl.style.display = 'block';
+        return;
+      }
+
+      // Reset error state
+      errorEl.style.display = 'none';
+      errorEl.textContent = '';
+      btn.disabled = true;
+      btn.textContent = 'Adding...';
+
+      fetch('/api/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email, source: 'faithwall' })
+      })
+      .then(function(res) { return res.json().then(function(data) { return { ok: res.ok, status: res.status, data: data }; }); })
+      .then(function(result) {
+        if (result.ok) {
+          // New subscriber — fire Meta Pixel Lead + GTM conversion
+          if (typeof fbq === 'function') fbq('track', 'Lead');
+          if (window.dataLayer) {
+            window.dataLayer.push({
+              event: 'faithwall_waitlist_signup',
+              email: email
+            });
+          }
+          // Hide form, show success
+          form.querySelector('.form-row').style.display = 'none';
+          form.querySelector('.form-note').style.display = 'none';
+          successEl.style.display = 'block';
+        } else if (result.status === 409) {
+          // Already subscribed
+          form.querySelector('.form-row').style.display = 'none';
+          form.querySelector('.form-note').style.display = 'none';
+          successEl.textContent = "You're already on the list.";
+          successEl.style.display = 'block';
+        } else {
+          errorEl.textContent = (result.data && result.data.message) || 'Something went wrong. Try again.';
+          errorEl.style.display = 'block';
+          btn.disabled = false;
+          btn.textContent = 'Notify me';
+        }
+      })
+      .catch(function() {
+        errorEl.textContent = 'Connection failed. Please try again.';
+        errorEl.style.display = 'block';
+        btn.disabled = false;
+        btn.textContent = 'Notify me';
+      });
+    });
+  })();
+  </script>
+
+  <!-- Meta Pixel: ViewContent on page load (FaithWall waitlist) -->
+  <script>
+  (function() {
+    if (typeof fbq === 'function') {
+      fbq('track', 'ViewContent', {
+        content_name: 'FaithWall Waitlist',
+        content_category: 'iOS Waitlist'
+      });
+    }
+    if (window.dataLayer) {
+      window.dataLayer.push({ event: 'faithwall_waitlist_view' });
+    }
+  })();
+  </script>
+</body>
+</html>

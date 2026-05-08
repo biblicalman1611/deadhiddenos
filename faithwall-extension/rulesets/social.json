@@ -1,0 +1,17 @@
+[
+  { "id": 201, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||facebook.com^",        "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 202, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||instagram.com^",       "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 203, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||tiktok.com^",          "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 204, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||twitter.com^",         "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 205, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||x.com^",               "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 206, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||snapchat.com^",        "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 207, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||reddit.com^",          "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 208, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||pinterest.com^",       "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 209, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||tumblr.com^",          "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 210, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||twitch.tv^",           "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 211, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||discord.com^",         "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 212, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||threads.net^",         "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 213, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||linkedin.com^",        "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 214, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||youtube.com^",         "resourceTypes": ["main_frame","sub_frame"] } },
+  { "id": 215, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||youtu.be^",            "resourceTypes": ["main_frame","sub_frame"] } }
+]

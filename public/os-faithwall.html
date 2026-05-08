@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Eyes Are Not Neutral — FaithWall — Dead Hidden</title>
+  <meta name="description" content="A Scripture-first habit wall for Christian homes — browser, mobile, household. FaithWall replaces what the new tab opens to.">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://deadhiddenos.polsia.app/os/faithwall">
+  <meta property="og:title" content="Your Eyes Are Not Neutral — FaithWall">
+  <meta property="og:description" content="A Scripture-first habit wall for Christian homes. Browser extension live. iOS coming. Replace what the new tab opens to.">
+  <meta property="og:image" content="https://pub-629428d185ca4960a0a73c850d32294b.r2.dev/company_91403/images/ba0ee447-5f3b-4ddf-ab4e-d0061785c029.png">
+  <meta property="og:image:width" content="1792">
+  <meta property="og:image:height" content="1024">
+  <meta property="og:site_name" content="Dead Hidden Ministries">
+
+  <!-- Twitter / X Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@biblicalman">
+  <meta name="twitter:title" content="Your Eyes Are Not Neutral — FaithWall">
+  <meta name="twitter:description" content="A Scripture-first habit wall for Christian homes. Browser extension live. iOS coming. Replace what the new tab opens to.">
+  <meta name="twitter:image" content="https://pub-629428d185ca4960a0a73c850d32294b.r2.dev/company_91403/images/ba0ee447-5f3b-4ddf-ab4e-d0061785c029.png">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:           #111;
+      --bg2:          #1a1a1a;
+      --bg3:          #222;
+      --border:       rgba(139,37,0,0.2);
+      --border-focus: #8b2500;
+      --text:         #f5f0e8;
+      --text-dim:     rgba(245,240,232,0.55);
+      --text-faint:   rgba(245,240,232,0.25);
+      --accent:       #8b2500;
+      --accent-hover: #a02c00;
+      --label:        #a0522d;
+    }
+
+    html { background: var(--bg); }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Georgia', serif;
+      min-height: 100vh;
+    }
+
+    /* ---- Header ---- */
+    .site-header {
+      border-bottom: 1px solid var(--border);
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+    }
+    .brand {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    /* ---- Layout ---- */
+    .container {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 64px 24px 96px;
+    }
+
+    /* ---- Eyebrow ---- */
+    .eyebrow {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--label);
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    /* ---- Headline ---- */
+    h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      margin-bottom: 28px;
+    }
+
+    /* ---- Body prose ---- */
+    .lead {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--text-dim);
+      margin-bottom: 40px;
+      max-width: 560px;
+    }
+
+    .lead strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* ---- Verse block ---- */
+    .verse-block {
+      border-left: 3px solid var(--accent);
+      padding: 20px 24px;
+      margin-bottom: 28px;
+      background: var(--bg2);
+    }
+
+    .verse-ref {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--label);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .verse-text {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: var(--text);
+      font-style: italic;
+    }
+
+    /* ---- Divider ---- */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 48px 0;
+    }
+
+    /* ---- Section label ---- */
+    .section-label {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--label);
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    /* ---- Block grid (what-it-blocks) ---- */
+    .block-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-bottom: 48px;
+    }
+
+    .block-item {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      padding: 22px 24px;
+    }
+
+    .block-category {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--label);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .block-verse {
+      font-size: 0.93rem;
+      line-height: 1.7;
+      color: var(--text);
+      font-style: italic;
+      margin-bottom: 10px;
+    }
+
+    .block-ref {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--label);
+      margin-bottom: 10px;
+    }
+
+    .block-note {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      font-style: normal;
+      line-height: 1.55;
+    }
+
+    /* ---- How it works ---- */
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-bottom: 48px;
+    }
+
+    .step {
+      display: flex;
+      gap: 20px;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .step:last-child { border-bottom: none; }
+
+    .step-number {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 3px;
+      color: var(--label);
+      font-weight: 700;
+      padding-top: 4px;
+      flex-shrink: 0;
+      width: 24px;
+    }
+
+    .step-content h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+
+    .step-content p {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      line-height: 1.6;
+    }
+
+    /* ---- Email capture ---- */
+    .email-section {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      padding: 32px 28px;
+      margin-bottom: 48px;
+    }
+
+    .email-section h2 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+    }
+
+    .email-section p {
+      font-size: 0.93rem;
+      color: var(--text-dim);
+      line-height: 1.65;
+      margin-bottom: 20px;
+    }
+
+    .email-row {
+      display: flex;
+      gap: 0;
+      flex-wrap: wrap;
+    }
+
+    .email-row input[type="email"] {
+      flex: 1 1 220px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-right: none;
+      color: var(--text);
+      font-family: 'Georgia', serif;
+      font-size: 1rem;
+      padding: 14px 18px;
+      outline: none;
+      transition: border-color 0.15s;
+      -webkit-appearance: none;
+      min-width: 0;
+    }
+
+    .email-row input[type="email"]::placeholder {
+      color: var(--text-faint);
+    }
+
+    .email-row input[type="email"]:focus {
+      border-color: var(--border-focus);
+    }
+
+    .email-row button {
+      background: var(--accent);
+      color: var(--text);
+      border: none;
+      padding: 14px 28px;
+      font-family: 'Arial', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.2s;
+      flex-shrink: 0;
+    }
+
+    .email-row button:hover:not(:disabled) {
+      background: var(--accent-hover);
+    }
+
+    .email-row button:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+
+    .email-success {
+      display: none;
+      font-family: 'Arial', sans-serif;
+      font-size: 0.85rem;
+      color: #a3e4a3;
+      letter-spacing: 1px;
+      margin-top: 12px;
+    }
+
+    .email-error {
+      display: none;
+      font-size: 0.88rem;
+      color: #fca5a5;
+      margin-top: 10px;
+      line-height: 1.5;
+    }
+
+    /* ---- Buy CTAs ---- */
+    .buy-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+
+    .buy-card {
+      background: var(--bg2);
+      border: 1px solid rgba(139,37,0,0.45);
+      padding: 28px 28px 24px;
+    }
+
+    .buy-card .eyebrow {
+      margin-bottom: 10px;
+    }
+
+    .buy-card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+
+    .buy-card p {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .buy-btn {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--text);
+      text-decoration: none;
+      padding: 16px 36px;
+      font-family: 'Arial', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      transition: background 0.2s;
+    }
+
+    .buy-btn:hover {
+      background: var(--accent-hover);
+    }
+
+    .buy-price-note {
+      display: block;
+      margin-top: 12px;
+      font-family: 'Arial', sans-serif;
+      font-size: 0.75rem;
+      color: var(--text-faint);
+      letter-spacing: 1px;
+    }
+
+    /* ---- Footer ---- */
+    .site-footer {
+      margin-top: 80px;
+      padding: 32px 24px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+    .site-footer p {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.75rem;
+      color: var(--text-faint);
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+    }
+    .site-footer p:last-child { margin-bottom: 0; }
+    .site-footer a {
+      color: rgba(245,240,232,0.35);
+      text-decoration: none;
+    }
+    .site-footer a:hover { color: var(--text-dim); }
+
+    /* ---- Mobile ---- */
+    @media (max-width: 480px) {
+      .email-row { flex-direction: column; }
+      .email-row input[type="email"] { border-right: 1px solid var(--border); border-bottom: none; }
+      .email-row button { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="https://deadhidden.org" class="brand">Dead Hidden</a>
+</header>
+
+<main class="container">
+
+  <!-- Hero -->
+  <div class="eyebrow">Dead Hidden OS &mdash; FaithWall</div>
+  <h1>Your eyes are not neutral.</h1>
+
+  <div class="verse-block">
+    <div class="verse-ref">Job 31:1 KJV</div>
+    <div class="verse-text">
+      &ldquo;I made a covenant with mine eyes; why then should I think upon a maid?&rdquo;
+    </div>
+  </div>
+
+  <p class="lead">
+    Job didn&rsquo;t manage his eyes. He covenanted with them.<br>
+    <strong>A Scripture-first habit wall for Christian homes &mdash; browser, mobile, household.</strong><br>
+    Every new tab is a choice. FaithWall makes that choice before you do.
+  </p>
+
+  <hr class="divider">
+
+  <!-- What it blocks grid -->
+  <div class="section-label">What the wall holds back</div>
+  <div class="block-grid">
+
+    <div class="block-item">
+      <div class="block-category">Pornography</div>
+      <div class="block-verse">&ldquo;I made a covenant with mine eyes; why then should I think upon a maid?&rdquo;</div>
+      <div class="block-ref">Job 31:1</div>
+      <div class="block-note">
+        The covenant is active, not passive. Job drew the line at the eye &mdash; not at the act.
+        FaithWall draws it at the browser. The gate is set before the craving speaks.
+      </div>
+    </div>
+
+    <div class="block-item">
+      <div class="block-category">Gambling</div>
+      <div class="block-verse">&ldquo;He that hasteth to be rich hath an evil eye, and considereth not that poverty shall come upon him.&rdquo;</div>
+      <div class="block-ref">Proverbs 28:22 KJV</div>
+      <div class="block-note">
+        Gambling is not a recreation problem. It is a covetousness problem with a browser entry point.
+        Block the access point; address the root.
+      </div>
+    </div>
+
+    <div class="block-item">
+      <div class="block-category">Occult &amp; divination</div>
+      <div class="block-verse">&ldquo;There shall not be found among you any one that maketh his son or his daughter to pass through the fire, or that useth divination, or an observer of times, or an enchanter, or a witch.&rdquo;</div>
+      <div class="block-ref">Deuteronomy 18:10 KJV</div>
+      <div class="block-note">
+        Horoscopes, tarot, astrology &mdash; Scripture does not soften on any of it.
+        The wall makes the boundary physical, not just theoretical.
+      </div>
+    </div>
+
+    <div class="block-item">
+      <div class="block-category">Secular dating &amp; hookup culture</div>
+      <div class="block-verse">&ldquo;Flee fornication. Every sin that a man doeth is without the body; but he that committeth fornication sinneth against his own body.&rdquo;</div>
+      <div class="block-ref">1 Corinthians 6:18 KJV</div>
+      <div class="block-note">
+        Flee is a verb of motion. Not negotiate, not moderate &mdash; flee.
+        Access to the platform is not moderated exposure; it is the first step.
+      </div>
+    </div>
+
+    <div class="block-item">
+      <div class="block-category">Doomscrolling &amp; idle feeds</div>
+      <div class="block-verse">&ldquo;Finally, brethren, whatsoever things are true, whatsoever things are honest, whatsoever things are just, whatsoever things are pure, whatsoever things are lovely, whatsoever things are of good report; if there be any virtue, and if there be any praise, think on these things.&rdquo;</div>
+      <div class="block-ref">Philippians 4:8 KJV</div>
+      <div class="block-note">
+        The algorithmic feed was not designed to help you think on these things.
+        It was designed to keep you thinking on the next thing. The new tab is the first redirect.
+      </div>
+    </div>
+
+    <div class="block-item">
+      <div class="block-category">Gossip &amp; slander outlets</div>
+      <div class="block-verse">&ldquo;A froward man soweth strife: and a whisperer separateth chief friends.&rdquo;</div>
+      <div class="block-ref">Proverbs 16:28 KJV</div>
+      <div class="block-note">
+        Celebrity gossip, outrage media, and drama feeds are industrialized whispering.
+        The content changes. The spiritual mechanism is ancient. Block the pipeline.
+      </div>
+    </div>
+
+  </div>
+
+  <hr class="divider">
+
+  <!-- How it works -->
+  <div class="section-label">How it works</div>
+  <div class="steps">
+
+    <div class="step">
+      <div class="step-number">01</div>
+      <div class="step-content">
+        <h3>Install the extension</h3>
+        <p>Add FaithWall to Chrome. It takes sixty seconds. No account required to start — the wall goes up on install.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-number">02</div>
+      <div class="step-content">
+        <h3>Set the household passcode</h3>
+        <p>You set it. You keep it. The passcode belongs to the household head &mdash; not the user. If anyone can override the wall themselves, it is not a wall.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-number">03</div>
+      <div class="step-content">
+        <h3>Every new tab opens to Scripture, not a feed</h3>
+        <p>The blocked sites redirect. The new tab loads a verse. The habit changes before the craving has time to route around your intentions.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <hr class="divider">
+
+  <!-- Email capture -->
+  <div class="email-section" id="email-section">
+    <div class="section-label">Stay in the fight</div>
+    <h2>Get the material that goes deeper.</h2>
+    <p>
+      FaithWall updates, Scripture resources, and field notes &mdash; when they&rsquo;re ready, not on a schedule.
+      No filler. You can leave whenever.
+    </p>
+    <form id="faithwall-email-form" novalidate>
+      <input type="hidden" id="utm_source" name="utm_source" value="">
+      <input type="hidden" id="utm_medium" name="utm_medium" value="">
+      <input type="hidden" id="utm_campaign" name="utm_campaign" value="">
+      <input type="hidden" id="utm_content" name="utm_content" value="">
+      <div class="email-row">
+        <input
+          type="email"
+          id="faithwall-email"
+          placeholder="Your email address"
+          autocomplete="email"
+          required
+        >
+        <button type="submit" id="faithwall-submit">Join &rarr;</button>
+      </div>
+    </form>
+    <div class="email-success" id="email-success">You&rsquo;re in. Watch your inbox.</div>
+    <div class="email-error" id="email-error"></div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- Buy CTAs -->
+  <div class="section-label">Put the wall up</div>
+  <div class="buy-grid">
+
+    <div class="buy-card">
+      <div class="eyebrow">Individual License</div>
+      <h3>One browser. One covenant.</h3>
+      <p>
+        Install on your own machine. Full blocklist, Scripture new tab, passcode-protected settings.
+        One-time purchase &mdash; no subscription, no recurring charges.
+      </p>
+      <a
+        href="/checkout?slug=faithwall-individual&utm_content=faithwall_landing"
+        class="buy-btn"
+        id="buy-individual-btn"
+        data-product-slug="faithwall-individual"
+        data-product-value="29.99"
+      >FaithWall Individual &mdash; $29.99</a>
+      <span class="buy-price-note">One-time. Your browser, your wall.</span>
+    </div>
+
+    <div class="buy-card">
+      <div class="eyebrow">Household License</div>
+      <h3>The whole house. One passcode.</h3>
+      <p>
+        Covers every browser in your household. Set the passcode once.
+        Your wife, your children, every machine &mdash; the wall holds across all of them.
+        You are the one who established the covenant; you are the one who keeps it.
+      </p>
+      <a
+        href="/checkout?slug=faithwall-household&utm_content=faithwall_landing"
+        class="buy-btn"
+        id="buy-household-btn"
+        data-product-slug="faithwall-household"
+        data-product-value="39.99"
+      >FaithWall Household &mdash; $39.99</a>
+      <span class="buy-price-note">One-time. Every browser. Every member.</span>
+    </div>
+
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <p>
+    <a href="https://deadhidden.org">Dead Hidden</a> &nbsp;|&nbsp;
+    Questions: <a href="mailto:support@deadhidden.org">support@deadhidden.org</a>
+  </p>
+  <p>
+    <a href="#" id="substack-link">Run it on Substack? Read the long form &rarr;</a>
+  </p>
+</footer>
+
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1648664066389309');
+fbq('track', 'PageView');
+fbq('track', 'ViewContent', {
+  content_name: 'faithwall_landing',
+  content_category: 'narrative_landing'
+});
+</script>
+<noscript>
+  <img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1648664066389309&ev=PageView&noscript=1"/>
+</noscript>
+
+<!-- UTM capture + email form + CTA tracking -->
+<script>
+(function() {
+  // ---- UTM capture ----
+  var params = new URLSearchParams(window.location.search);
+  var utmSource   = params.get('utm_source')   || '';
+  var utmMedium   = params.get('utm_medium')   || '';
+  var utmCampaign = params.get('utm_campaign') || '';
+  var utmContent  = params.get('utm_content')  || '';
+
+  document.getElementById('utm_source').value   = utmSource;
+  document.getElementById('utm_medium').value   = utmMedium;
+  document.getElementById('utm_campaign').value = utmCampaign;
+  document.getElementById('utm_content').value  = utmContent;
+
+  // Source tag for DB
+  var source = 'faithwall_landing';
+  if (utmSource) source = 'faithwall_landing|' + utmSource;
+
+  // ---- Append UTM params to CTA buttons ----
+  // If utm_source=buyer_share or buyer_referral, the utm_content is the referrer's buyer hash.
+  // Pass it as `ref` so checkout → webhook can attribute the conversion.
+  var isShareRef = (utmSource === 'buyer_share' || utmSource === 'buyer_referral') && /^[a-f0-9]{8,16}$/.test(utmContent);
+  var ctaIds = ['buy-individual-btn', 'buy-household-btn'];
+  ctaIds.forEach(function(id) {
+    var btn = document.getElementById(id);
+    if (!btn) return;
+    var ctaUrl = new URL(btn.getAttribute('href'), window.location.origin);
+    if (utmSource)   ctaUrl.searchParams.set('utm_source', utmSource);
+    if (utmMedium)   ctaUrl.searchParams.set('utm_medium', utmMedium);
+    if (utmCampaign) ctaUrl.searchParams.set('utm_campaign', utmCampaign);
+    if (isShareRef)  ctaUrl.searchParams.set('ref', utmContent);
+    // utm_content is already 'faithwall_landing' in the base href
+    btn.setAttribute('href', ctaUrl.pathname + ctaUrl.search);
+  });
+
+  // ---- Meta Pixel InitiateCheckout on CTA click ----
+  ctaIds.forEach(function(id) {
+    var btn = document.getElementById(id);
+    if (!btn) return;
+    btn.addEventListener('click', function() {
+      if (typeof fbq === 'function') {
+        fbq('track', 'InitiateCheckout', {
+          content_name: btn.getAttribute('data-product-slug'),
+          value: parseFloat(btn.getAttribute('data-product-value')),
+          currency: 'USD'
+        });
+      }
+    });
+  });
+
+  // ---- Email form ----
+  var form      = document.getElementById('faithwall-email-form');
+  var submitBtn = document.getElementById('faithwall-submit');
+  var errorEl   = document.getElementById('email-error');
+  var successEl = document.getElementById('email-success');
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    var email = document.getElementById('faithwall-email').value.trim();
+    if (!email) return;
+
+    errorEl.style.display = 'none';
+    errorEl.textContent = '';
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Joining...';
+
+    try {
+      var resp = await fetch('/api/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email, source: source })
+      });
+
+      var data = await resp.json();
+
+      if (resp.ok) {
+        if (typeof fbq === 'function') fbq('track', 'Lead');
+        form.style.display = 'none';
+        successEl.style.display = 'block';
+      } else if (resp.status === 409) {
+        form.style.display = 'none';
+        successEl.textContent = "You\u2019re already on the list.";
+        successEl.style.display = 'block';
+      } else {
+        errorEl.textContent = data.message || 'Something went wrong. Please try again.';
+        errorEl.style.display = 'block';
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Join \u2192';
+      }
+    } catch (err) {
+      errorEl.textContent = 'Connection failed. Check your connection and try again.';
+      errorEl.style.display = 'block';
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Join \u2192';
+    }
+  });
+})();
+</script>
+
+</body>
+</html>

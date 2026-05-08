@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmed — Dead Hidden</title>
+
+    <!-- Google Tag Manager -->
+    <!-- IMPORTANT: Replace GTM-XXXXXXX with your actual GTM Container ID -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-XXXXXXX');</script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1648664066389309');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1648664066389309&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+
+    <!-- dataLayer init must come before GTM snippet -->
+    <script>window.dataLayer = window.dataLayer || [];</script>
+
+    <!-- Fire Purchase event with value + currency from URL params, then redirect to deadhidden.org for file delivery -->
+    <script>
+    (function() {
+        var params = new URLSearchParams(window.location.search);
+        var amount = parseFloat(params.get('amount'));
+        var currency = params.get('currency') || 'USD';
+        var sessionId = params.get('session_id');
+        var slug = params.get('slug') || '';
+
+        // Push purchase data to dataLayer for GTM
+        window.dataLayer.push({
+            event: 'purchase',
+            ecommerce: {
+                transaction_id: sessionId || '',
+                value: (amount && !isNaN(amount)) ? amount : 0,
+                currency: currency,
+                items: [{
+                    item_id: slug,
+                    item_name: slug,
+                    quantity: 1,
+                    price: (amount && !isNaN(amount)) ? amount : 0
+                }]
+            }
+        });
+
+        // Fire Meta Pixel Purchase event
+        if (typeof fbq === 'function') {
+            var eventData = { currency: currency, num_items: 1 };
+            if (amount && !isNaN(amount)) {
+                eventData.value = amount;
+            }
+            if (slug) {
+                eventData.content_ids = [slug];
+                eventData.content_type = 'product';
+            }
+            fbq('track', 'Purchase', eventData);
+        }
+
+        // After pixel fires, redirect to deadhidden.org/success for file delivery
+        // 1.5s delay ensures pixel + GTM requests complete before navigation
+        if (sessionId) {
+            setTimeout(function() {
+                window.location.href = 'https://deadhidden.org/success?session_id=' + encodeURIComponent(sessionId);
+            }, 1500);
+        }
+    })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bone: #f5f0e8;
+            --ink: #1a1a1a;
+            --blood: #8b2500;
+            --rust: #a0522d;
+            --char: #2d2d2d;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--ink);
+            color: var(--bone);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 24px;
+        }
+
+        .container {
+            max-width: 580px;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* Seal / Icon */
+        .seal {
+            width: 72px;
+            height: 72px;
+            margin: 0 auto 32px;
+            border: 2px solid rgba(139, 37, 0, 0.5);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(139, 37, 0, 0.08);
+        }
+
+        .seal svg {
+            width: 36px;
+            height: 36px;
+            stroke: #8b2500;
+            fill: none;
+            stroke-width: 1.5;
+        }
+
+        /* Top label */
+        .label {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.68rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--rust);
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.2rem, 6vw, 3rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 8px;
+            letter-spacing: -0.03em;
+        }
+
+        h1 span { color: var(--blood); }
+
+        .verse {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.95rem;
+            color: rgba(245, 240, 232, 0.38);
+            font-style: italic;
+            margin-bottom: 40px;
+            letter-spacing: 0.01em;
+        }
+
+        /* Main message card */
+        .card {
+            background: var(--char);
+            border: 1px solid rgba(139, 37, 0, 0.12);
+            border-radius: 6px;
+            padding: 36px 40px;
+            margin-bottom: 32px;
+            text-align: left;
+        }
+
+        .card-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--bone);
+        }
+
+        .card p {
+            font-size: 0.97rem;
+            color: rgba(245, 240, 232, 0.65);
+            line-height: 1.75;
+        }
+
+        .card p + p {
+            margin-top: 12px;
+        }
+
+        .highlight {
+            color: var(--bone);
+            font-weight: 500;
+        }
+
+        /* Divider */
+        .divider {
+            border: none;
+            border-top: 1px solid rgba(139, 37, 0, 0.1);
+            margin: 28px 0;
+        }
+
+        /* Support line */
+        .support {
+            font-size: 0.88rem;
+            color: rgba(245, 240, 232, 0.4);
+            line-height: 1.6;
+        }
+
+        .support a {
+            color: rgba(245, 240, 232, 0.65);
+            text-decoration: underline;
+            text-decoration-color: rgba(245, 240, 232, 0.2);
+            transition: color 0.2s;
+        }
+
+        .support a:hover { color: var(--bone); }
+
+        /* CTAs */
+        .actions {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--bone);
+            background: var(--blood);
+            text-decoration: none;
+            padding: 14px 36px;
+            border-radius: 3px;
+            transition: background 0.3s, transform 0.15s;
+        }
+
+        .btn-primary:hover {
+            background: #a02d00;
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            display: inline-block;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(245, 240, 232, 0.5);
+            text-decoration: none;
+            padding: 14px 36px;
+            border: 1px solid rgba(245, 240, 232, 0.12);
+            border-radius: 3px;
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover {
+            color: var(--bone);
+            border-color: rgba(245, 240, 232, 0.3);
+        }
+
+        @media (max-width: 480px) {
+            .card { padding: 28px 24px; }
+            .actions { flex-direction: column; align-items: center; }
+            .btn-primary, .btn-secondary { width: 100%; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <div class="container">
+        <div class="seal">
+            <!-- Check mark icon -->
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+        </div>
+
+        <div class="label">Order Confirmed</div>
+        <h1>The Word<br>was <span>purchased.</span></h1>
+        <p class="verse">"Buy truth, and do not sell it." — Proverbs 23:23</p>
+
+        <div class="card">
+            <div class="card-title">What happens next</div>
+            <p><span class="highlight">Check your email.</span> Your download link and access instructions are on their way. Check your inbox (and spam folder, just in case).</p>
+            <p>If you purchased a membership, your access is being activated now. Instructions will arrive within a few minutes.</p>
+            <hr class="divider">
+            <p class="support">
+                Questions? Email us at <a href="mailto:support@deadhidden.org">support@deadhidden.org</a> and we'll get back to you within 24 hours.
+            </p>
+        </div>
+
+        <div class="actions">
+            <a href="https://deadhidden.org" class="btn-primary">Back to Dead Hidden</a>
+            <a href="/" class="btn-secondary">DeadHiddenOS</a>
+        </div>
+    </div>
+</body>
+</html>
