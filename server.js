@@ -122,9 +122,8 @@ function lookupProductSlugByName(productName) {
 // productSlug (from Stripe metadata) is preferred for URL generation.
 // ============================================================
 async function sendFulfillmentEmail({ email, productName, amount, productSlug, sessionId }) {
-  const apiKey = process.env.POLSIA_API_KEY;
-  const baseUrl = process.env.POLSIA_R2_BASE_URL || 'https://polsia.com';
-  const fromEmail = 'deadhiddenos@polsia.app';
+  const baseUrl = process.env.R2_BASE_URL || 'https://deadhidden.org';
+  const fromEmail = process.env.EMAIL_FROM_ADDRESS || 'noreply@deadhidden.org';
   const fromName = 'Dead Hidden';
 
   const amountDisplay = amount ? `$${parseFloat(amount).toFixed(2)}` : '';
@@ -304,23 +303,20 @@ Questions? Email support@deadhidden.org and we'll make it right.
 deadhidden.org`;
 
   try {
-    const response = await fetch('https://polsia.com/api/proxy/email/send', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${apiKey}`
-      },
-      body: JSON.stringify({
-        to: email,
-        subject: `Your Dead Hidden order is confirmed — ${productDisplay}`,
-        html: htmlBody,
-        body: textBody
-      })
+    if (!process.env.RESEND_API_KEY) {
+      throw new Error('RESEND_API_KEY not configured');
+    }
+    const { Resend } = require('resend');
+    const resend = new Resend(process.env.RESEND_API_KEY);
+    const result = await resend.emails.send({
+      from: `${fromName} <${fromEmail}>`,
+      to: email,
+      subject: `Your Dead Hidden order is confirmed — ${productDisplay}`,
+      html: htmlBody,
+      text: textBody,
     });
-
-    if (!response.ok) {
-      const errText = await response.text().catch(() => 'unknown error');
-      throw new Error(`Email API returned ${response.status}: ${errText}`);
+    if (result.error) {
+      throw new Error(result.error.message || JSON.stringify(result.error));
     }
 
     console.log(`[fulfillment] Email sent to ${email} for product: ${productDisplay}`);
@@ -434,40 +430,32 @@ function lookupProduct(productName, amount) {
 
 // ============================================================
 // EMAIL HELPER
-// Uses Polsia email proxy (https://polsia.com/email/send)
-// Falls back gracefully — never throws, returns { ok, error }
+// Uses Resend (resend.com). Falls back gracefully — never throws.
 // ============================================================
 async function sendEmail({ to, subject, htmlBody, textBody }) {
-  const apiKey = process.env.POLSIA_API_KEY;
-
-  if (!apiKey) {
-    console.error('[email] POLSIA_API_KEY not set — cannot send email');
-    return { ok: false, error: 'POLSIA_API_KEY not configured' };
+  if (!process.env.RESEND_API_KEY) {
+    console.error('[email] RESEND_API_KEY not set — cannot send email');
+    return { ok: false, error: 'RESEND_API_KEY not configured' };
   }
 
   try {
-    const response = await fetch('https://polsia.com/api/proxy/email/send', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${apiKey}`
-      },
-      body: JSON.stringify({
-        to,
-        subject,
-        html: htmlBody,
-        body: textBody || ''
-      })
+    const { Resend } = require('resend');
+    const resend = new Resend(process.env.RESEND_API_KEY);
+    const fromEmail = process.env.EMAIL_FROM_ADDRESS || 'noreply@deadhidden.org';
+    const result = await resend.emails.send({
+      from: `Dead Hidden <${fromEmail}>`,
+      to,
+      subject,
+      html: htmlBody,
+      text: textBody || '',
     });
-
-    if (response.ok) {
-      console.log(`[email] Sent to ${to} — subject: "${subject}"`);
-      return { ok: true };
-    } else {
-      const errBody = await response.text().catch(() => 'unknown error');
-      console.error(`[email] Failed to ${to}: HTTP ${response.status} — ${errBody}`);
-      return { ok: false, error: `HTTP ${response.status}: ${errBody}` };
+    if (result.error) {
+      const msg = result.error.message || JSON.stringify(result.error);
+      console.error(`[email] Resend error to ${to}: ${msg}`);
+      return { ok: false, error: msg };
     }
+    console.log(`[email] Sent to ${to} — subject: "${subject}"`);
+    return { ok: true };
   } catch (err) {
     console.error(`[email] Request error to ${to}:`, err.message);
     return { ok: false, error: err.message };
@@ -821,15 +809,28 @@ app.post('/api/orders', express.raw({ type: 'application/json' }), async (req, r
       console.error('Order insert error:', dbErr.message);
     }
 
-    // Register buyer as a known email contact so fulfillment emails are never rate-limited
-    if (email && orderId) {
-      const polsiaKey = process.env.POLSIA_API_KEY;
-      if (polsiaKey) {
-        fetch('https://polsia.com/api/proxy/email/contacts', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${polsiaKey}` },
-          body: JSON.stringify({ email, source: 'purchase' })
-        }).catch(err => console.error('[order] Contact registration error:', err.message));
+    // Register buyer as a Resend audience contact so they enter post-purchase automations.
+    // Gated by SKIP_RESEND_CONTACT_REGISTER so we don't duplicate the Next.js
+    // /api/webhook tagging once the dual-webhook ownership split is complete
+    // (see ops/deliverables/sunset-polsia-RUNBOOK.md).
+    if (
+      email &&
+      orderId &&
+      process.env.RESEND_API_KEY &&
+      process.env.SKIP_RESEND_CONTACT_REGISTER !== 'true'
+    ) {
+      const audienceId = process.env.RESEND_AUDIENCE_ID || '853ea354-ef8b-4781-86cd-1b1032ad247e';
+      try {
+        const { Resend } = require('resend');
+        const resend = new Resend(process.env.RESEND_API_KEY);
+        // contacts.create is idempotent on (audienceId, email)
+        await resend.contacts.create({
+          audienceId,
+          email,
+          unsubscribed: false,
+        });
+      } catch (err) {
+        console.error('[order] Resend contact registration error:', err.message);
       }
     }
 
@@ -857,7 +858,7 @@ app.post('/api/orders', express.raw({ type: 'application/json' }), async (req, r
       }
 
       // Admin notification — fires regardless of buyer email success
-      const adminEmail = process.env.ADMIN_EMAIL || 'deadhiddenos@polsia.app';
+      const adminEmail = process.env.ADMIN_EMAIL || 'thebiblicalman1611@gmail.com';
       const amountDisplay = amount != null ? `$${parseFloat(amount).toFixed(2)}` : 'N/A';
       const adminContent = buildAdminEmail(email, lookupProduct(productName, amount), amount, sessionId, newStatus);
       sendEmail({
@@ -1110,7 +1111,7 @@ app.get('/checkout', async (req, res) => {
       priceData.recurring = { interval: 'month' };
     }
 
-    const host = req.headers.host || 'deadhiddenos.polsia.app';
+    const host = req.headers.host || 'deadhidden.org';
     const proto = req.headers['x-forwarded-proto'] || (req.secure ? 'https' : 'http');
     const appBase = `${proto}://${host}`;
 
@@ -1179,7 +1180,7 @@ app.post('/api/checkout', async (req, res) => {
       priceData.recurring = { interval: 'month' };
     }
 
-    const apiHost = req.headers.host || 'deadhiddenos.polsia.app';
+    const apiHost = req.headers.host || 'deadhidden.org';
     const apiProto = req.headers['x-forwarded-proto'] || (req.secure ? 'https' : 'http');
     const apiBase = `${apiProto}://${apiHost}`;
 
