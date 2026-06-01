@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beta Test FaithWall — The Full App + Radio — Dead Hidden</title>
+  <meta name="description" content="Beta test the full FaithWall iOS app plus radio. Pay what you want, $10 minimum. Bible first. Then the phone.">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://deadhiddenos.polsia.app/os/faithwall-beta">
+  <meta property="og:title" content="Beta Test FaithWall — The Full App + Radio">
+  <meta property="og:description" content="Beta test the full FaithWall iOS app plus radio. Pay what you want, $10 minimum. Bible first. Then the phone.">
+  <meta property="og:image" content="https://pub-629428d185ca4960a0a73c850d32294b.r2.dev/company_91403/images/ba0ee447-5f3b-4ddf-ab4e-d0061785c029.png">
+  <meta property="og:image:width" content="1792">
+  <meta property="og:image:height" content="1024">
+  <meta property="og:site_name" content="Dead Hidden Ministries">
+
+  <!-- Twitter / X Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@biblicalman">
+  <meta name="twitter:title" content="Beta Test FaithWall — The Full App + Radio">
+  <meta name="twitter:description" content="Beta test the full FaithWall iOS app plus radio. Pay what you want, $10 minimum. Bible first. Then the phone.">
+  <meta name="twitter:image" content="https://pub-629428d185ca4960a0a73c850d32294b.r2.dev/company_91403/images/ba0ee447-5f3b-4ddf-ab4e-d0061785c029.png">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:           #111;
+      --bg2:          #1a1a1a;
+      --bg3:          #222;
+      --border:       rgba(139,37,0,0.2);
+      --border-focus: #8b2500;
+      --text:         #f5f0e8;
+      --text-dim:     rgba(245,240,232,0.55);
+      --text-faint:   rgba(245,240,232,0.25);
+      --accent:       #8b2500;
+      --accent-hover: #a02c00;
+      --label:        #a0522d;
+    }
+
+    html { background: var(--bg); }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Georgia', serif;
+      min-height: 100vh;
+    }
+
+    /* ---- Header ---- */
+    .site-header {
+      border-bottom: 1px solid var(--border);
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+    }
+    .brand {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    /* ---- Layout ---- */
+    .container {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 64px 24px 96px;
+    }
+
+    /* ---- Eyebrow ---- */
+    .eyebrow {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--label);
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    /* ---- Headline ---- */
+    h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      margin-bottom: 28px;
+    }
+
+    /* ---- Body prose ---- */
+    .lead {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--text-dim);
+      margin-bottom: 40px;
+      max-width: 560px;
+    }
+
+    .lead strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* ---- Verse block ---- */
+    .verse-block {
+      border-left: 3px solid var(--accent);
+      padding: 20px 24px;
+      margin-bottom: 28px;
+      background: var(--bg2);
+    }
+
+    .verse-ref {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--label);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .verse-text {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: var(--text);
+      font-style: italic;
+    }
+
+    /* ---- Divider ---- */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 48px 0;
+    }
+
+    /* ---- Section label ---- */
+    .section-label {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--label);
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    /* ---- What you get list ---- */
+    .get-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-bottom: 48px;
+    }
+
+    .get-item {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      padding: 22px 24px;
+    }
+
+    .get-item h3 {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--label);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .get-item p {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.88rem;
+      color: var(--text-dim);
+      line-height: 1.6;
+    }
+
+    /* ---- How it works ---- */
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-bottom: 48px;
+    }
+
+    .step {
+      display: flex;
+      gap: 20px;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .step:last-child { border-bottom: none; }
+
+    .step-number {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 3px;
+      color: var(--label);
+      font-weight: 700;
+      padding-top: 4px;
+      flex-shrink: 0;
+      width: 24px;
+    }
+
+    .step-content h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+
+    .step-content p {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      line-height: 1.6;
+    }
+
+    /* ---- Buy CTA ---- */
+    .buy-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+
+    .buy-card {
+      background: var(--bg2);
+      border: 1px solid rgba(139,37,0,0.45);
+      padding: 28px 28px 24px;
+    }
+
+    .buy-card .eyebrow {
+      margin-bottom: 10px;
+    }
+
+    .buy-card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+
+    .buy-card p {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .buy-btn {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--text);
+      text-decoration: none;
+      padding: 16px 36px;
+      font-family: 'Arial', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      transition: background 0.2s;
+    }
+
+    .buy-btn:hover {
+      background: var(--accent-hover);
+    }
+
+    .buy-price-note {
+      display: block;
+      margin-top: 12px;
+      font-family: 'Arial', sans-serif;
+      font-size: 0.75rem;
+      color: var(--text-faint);
+      letter-spacing: 1px;
+    }
+
+    /* ---- Footer ---- */
+    .site-footer {
+      margin-top: 80px;
+      padding: 32px 24px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+    .site-footer p {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.75rem;
+      color: var(--text-faint);
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+    }
+    .site-footer p:last-child { margin-bottom: 0; }
+    .site-footer a {
+      color: rgba(245,240,232,0.35);
+      text-decoration: none;
+    }
+    .site-footer a:hover { color: var(--text-dim); }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="https://deadhidden.org" class="brand">Dead Hidden</a>
+</header>
+
+<main class="container">
+
+  <!-- Hero -->
+  <div class="eyebrow">Dead Hidden OS &mdash; FaithWall Beta</div>
+  <h1>Bible first. Then the phone.</h1>
+
+  <div class="verse-block">
+    <div class="verse-ref">Psalm 119:147 KJV</div>
+    <div class="verse-text">
+      &ldquo;I prevented the dawning of the morning, and cried: I hoped in thy word.&rdquo;
+    </div>
+  </div>
+
+  <p class="lead">
+    Most men reach for the phone before they reach for the Word.<br>
+    <strong>FaithWall flips it.</strong> Each morning a wall goes up on your home screen
+    with the day&rsquo;s Scripture. The phone stays gated until you&rsquo;ve read the plan.<br>
+    This is the beta. The full app plus radio. I want your honest feedback before it ships.
+  </p>
+
+  <hr class="divider">
+
+  <!-- What you get -->
+  <div class="section-label">What you&rsquo;re testing</div>
+  <div class="get-grid">
+
+    <div class="get-item">
+      <h3>The full Bible app</h3>
+      <p>The complete reading experience. Daily plan, the morning wall, the gate that holds your phone until the Word comes first.</p>
+    </div>
+
+    <div class="get-item">
+      <h3>Radio</h3>
+      <p>Scripture and sound built in. Listen while you work, drive, or wake the house.</p>
+    </div>
+
+    <div class="get-item">
+      <h3>Family mode</h3>
+      <p>One household. One wall. Set it once. The whole house starts the day in the Word.</p>
+    </div>
+
+  </div>
+
+  <hr class="divider">
+
+  <!-- How it works -->
+  <div class="section-label">How the beta works</div>
+  <div class="steps">
+
+    <div class="step">
+      <div class="step-number">01</div>
+      <div class="step-content">
+        <h3>Grab beta access below</h3>
+        <p>Pay what you want, $10 minimum. The next screen hands you the TestFlight link instantly.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-number">02</div>
+      <div class="step-content">
+        <h3>Install through TestFlight</h3>
+        <p>Open the link on your iPhone. Tap Accept, then Install. FaithWall downloads like any other app.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-number">03</div>
+      <div class="step-content">
+        <h3>Run it for a week and tell me the truth</h3>
+        <p>Use it every morning. Then hit me back with what feels right and what feels off. The rough edges are where I need you most.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <hr class="divider">
+
+  <!-- Buy CTA -->
+  <div class="section-label">Get in the beta</div>
+  <div class="buy-grid">
+
+    <div class="buy-card">
+      <div class="eyebrow">Beta Access &mdash; Pay What You Want</div>
+      <h3>Test the full app. Set your own price.</h3>
+      <p>
+        This represents six weeks of work. Pay what you want, $10 minimum.
+        Beta access gets you the full Bible app plus radio, and your feedback shapes
+        the final FaithWall &mdash; dropping soon. One-time. No subscription.
+      </p>
+      <a
+        href="https://buy.stripe.com/bJeaEY5ZG4EIdky0cTc3m0j"
+        class="buy-btn"
+        id="buy-beta-btn"
+        data-product-slug="faithwall-beta"
+        data-product-value="10.00"
+      >Beta Test FaithWall &mdash; $10+</a>
+      <span class="buy-price-note">One-time. Pay what you want, $10 minimum. TestFlight link on the next screen.</span>
+    </div>
+
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <p>
+    <a href="https://deadhidden.org">Dead Hidden</a> &nbsp;|&nbsp;
+    Questions: <a href="mailto:support@deadhidden.org">support@deadhidden.org</a>
+  </p>
+  <p>Built by Adam Johnson.</p>
+</footer>
+
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1648664066389309');
+fbq('track', 'PageView');
+fbq('track', 'ViewContent', {
+  content_name: 'faithwall_beta_landing',
+  content_category: 'narrative_landing'
+});
+</script>
+<noscript>
+  <img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1648664066389309&ev=PageView&noscript=1"/>
+</noscript>
+
+<!-- InitiateCheckout tracking on CTA click -->
+<script>
+(function() {
+  var btn = document.getElementById('buy-beta-btn');
+  if (!btn) return;
+  btn.addEventListener('click', function() {
+    if (typeof fbq === 'function') {
+      fbq('track', 'InitiateCheckout', {
+        content_name: btn.getAttribute('data-product-slug'),
+        value: parseFloat(btn.getAttribute('data-product-value')),
+        currency: 'USD'
+      });
+    }
+  });
+})();
+</script>
+
+</body>
+</html>

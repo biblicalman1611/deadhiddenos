@@ -1321,6 +1321,18 @@ app.get('/os/faithwall', (req, res) => {
 });
 
 // ============================================================
+// FAITHWALL BETA FUNNEL — /os/faithwall-beta
+// PWYW beta-access landing for the full FaithWall iOS app + radio.
+// Single primary CTA points to the live Dead Hidden Stripe Payment
+// Link (prod_Ucodqxydycv3ew, $10 minimum PWYW). The Stripe hosted
+// confirmation hands the buyer the TestFlight link instantly.
+// Meta Pixel ViewContent + InitiateCheckout on CTA click.
+// ============================================================
+app.get('/os/faithwall-beta', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'os-faithwall-beta.html'));
+});
+
+// ============================================================
 // FAITHWALL WAITLIST — /faithwall
 // Pre-launch waitlist page capturing email while iOS App Store
 // review is in progress. Posts to /api/signup with source=faithwall.
